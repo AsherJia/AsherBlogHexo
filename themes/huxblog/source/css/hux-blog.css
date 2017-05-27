@@ -48,6 +48,10 @@
 .sidebar-container .short-about .list-inline > li {
   padding-left: 0px;
 }
+.sidebar-container .fixed {
+  position: fixed;
+  top: -21px;
+}
 body {
   /* Hux learn from
      *     TypeIsBeautiful,
