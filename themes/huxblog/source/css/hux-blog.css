@@ -486,6 +486,7 @@ pre code {
 }
 .post-preview > a {
   color: #404040;
+  overflow: hidden;
 }
 .post-preview > a:hover,
 .post-preview > a:focus {
