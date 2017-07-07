@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Mobx - AsherJia的博客 | AsherJia&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://blog.asherjia.com/2017/03/17/2017-03-17-mobx/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Asher&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/news/">News</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://blog.asherjia.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Mobx" title="Mobx">Mobx</a>
+                        
+                    </div>
+                    <h1>Mobx</h1>
+                    <h2 class="subheading">Mobx</h2>
+                    <span class="meta">
+                        Posted by Asher on
+                        2017-03-17
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="话不多说先来一个栗子"><a href="#话不多说先来一个栗子" class="headerlink" title="话不多说先来一个栗子"></a>话不多说先来一个栗子</h1><p><a href="https://github.com/AsherJia/MobxTemplate" target="_blank" rel="external">GitHub MobxTemplate</a>{:target=”_blank”}</p>
+<h1 id="FRP"><a href="#FRP" class="headerlink" title="FRP"></a>FRP</h1><blockquote>
+<p>The essence of functional reactive programming is to specify the dynamic behavior of a value completely<br>at the time of declaration. – Heinrich Apfelmus</p>
+</blockquote>
+<p>所以，FRP 的本质是，在声明一个值的时候，同时指定他的动态行为。这个值可能是事件，也可能是数据。</p>
+<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><p>然后 FRP 有两个重要的分支：</p>
+<ul>
+<li>基于 Event Stream 的 FRP</li>
+<li>Transparent FRP (TFRP)</li>
+</ul>
+<p>基于 Event Stream 的 FRP 擅长于管理 Stream，可进行 Joining, splitting, merging, mapping, sampling 等等。在需要处理多个 Event Stream 的时候非常有用，但对于简单场景来说，就过于复杂了。比如 RxJS 和 BaconJS 就属于此类。</p>
+<p>Transparent FRP 是在背后去实现 Reactive Programming 。和 Event Stream 的 FRP 一样，TFRP 会在需要的时候更新 View，不同的是 TFRP 不需要你定义如何 (How) 以及何时 (When) 更新。这一类型的框架有 Meter(Tracker)，knockoutJS 和 EmberJS 。</p>
+<p>那么已经有这么多实现了，为什么还要有 Mobx ?</p>
+<h1 id="Mobx"><a href="#Mobx" class="headerlink" title="Mobx"></a>Mobx</h1><p>Mobx 和其他实现有些不同。</p>
+<ul>
+<li>同步执行 (这样监听的值始终是最新的，并且调试会方便，因为没有额外的 Promise/Async 库引入的堆栈信息)</li>
+<li>没有引入额外的数据结构，基于普通的 Object, Class, Array 实现 (更少学习成本，更新数据时更自然)</li>
+<li>独立方案 (不捆绑框架，相比 Meter, EmberJS 和 VueJS 而言)</li>
+</ul>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p>而要理解 mobx 的原理，我们需要一个更底层的例子。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; observable, autorun &#125; <span class="keyword">from</span> <span class="string">'mobx'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> counter = observable(<span class="number">0</span>);</div><div class="line">autorun(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'autorun'</span>, counter.get());</div><div class="line">&#125;);</div><div class="line"></div><div class="line">counter.set(<span class="number">1</span>);</div></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">autorun <span class="number">0</span></div><div class="line">autorun <span class="number">1</span></div></pre></td></tr></table></figure>
+<p>大家可能会好奇，为什么 <code>counter.set()</code> 之后，<code>autorun</code> 会自动执行? 要达到这个目的，通过 <code>counter</code> 需要知道 <code>autorun</code> 是依赖他的。那么这个依赖关系是在什么时候以及如何生成的呢?</p>
+<p>先看代码，这里涉及了 <code>mobx</code> 的 <code>observable</code> 和 <code>autorun</code> 接口。与此相关的有 <code>Observable</code> 和 <code>Derivation</code> 两个类。 <code>Observable</code> 是数据源，<code>Derivation</code> 是推导。</p>
+<p>类定义如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Observable</div><div class="line">  - observing: [Derivation]</div><div class="line">  - get()</div><div class="line">  - set()</div><div class="line"></div><div class="line">Derivation</div><div class="line">  - observer: [Observable]</div></pre></td></tr></table></figure>
+<p>然后，<code>autorun</code>执行的步骤是这样的：</p>
+<ul>
+<li>生成一个Derivation</li>
+<li>执行传入函数，计算出observing<ul>
+<li>怎么计算？访问数据是会走到Observable的get方法，通过get方法做记录</li>
+</ul>
+</li>
+<li>在observing的Observable的observer里添加这个Derivation</li>
+</ul>
+<p>到这里，Observable和Derivation的依赖关联就简历起来了。</p>
+<p>那么，<code>counter.set()</code>执行之后是如何触发<code>autorun</code>的自动执行？在有了上面这一层依赖关系之后，这个就很好理解了。counter.set()执行时会从自己的observing属性里取依赖他的Derivation,并触发他们的重新执行。</p>
+<h1 id="运行时依赖计算"><a href="#运行时依赖计算" class="headerlink" title="运行时依赖计算"></a>运行时依赖计算</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; observable, autorun &#125; <span class="keyword">from</span> <span class="string">'mobx'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> counter = observable(<span class="number">0</span>)</div><div class="line"><span class="keyword">const</span> foo = observalbe(<span class="number">0</span>)</div><div class="line"><span class="keyword">const</span> bar = observable(<span class="number">0</span>)</div><div class="line"></div><div class="line">autorun(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">if</span> (counter.get() === <span class="number">0</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'foo '</span>, foo.get())</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'bar '</span>, bar.get())</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">bar.set(<span class="number">10</span>)  <span class="comment">// no console log</span></div><div class="line">counter.set(<span class="number">1</span>) <span class="comment">// trigger autorun</span></div><div class="line">foo.set(<span class="number">100</span>) <span class="comment">// no console log</span></div><div class="line">bar.set(<span class="number">100</span>) <span class="comment">// trigger autorun</span></div></pre></td></tr></table></figure>
+<p>实际上前面的<code>autorun</code>的执行步骤是做了简化的，真实：</p>
+<ul>
+<li>生成Derivation</li>
+<li>记录oldObserving(+)</li>
+<li>执行传入函数，计算出observing<ul>
+<li>访问数据时会走到Obdervable的get()方法，通过get()方法做的记录</li>
+</ul>
+</li>
+<li>和oldObderving做diff, 得到新增和删除列表</li>
+<li>通过前面得到的diff结果，修改Observable的observing</li>
+</ul>
+<p>相比之前的，增加了diff的逻辑，以达到每次执行时候动态更新依赖关系表的目的。</p>
+<h1 id="get-set-magic"><a href="#get-set-magic" class="headerlink" title="get/set magic"></a>get/set magic</h1><p>大家在看前面的例子里可能会有个疑问，为啥第一个例子里可以通过 appState.counter 来设置，而后面的例子里需要用 counter.get 和 counter.set 来取值和设值?</p>
+<p>这和数据类型有关，mobx 支持的类型有 primitives, arrays, classes 和 objects 。primitives (原始类型) 只能通过 set 和 get 方法取值和设值。而 Object 则可以利用 Object.defineProperty 方法自定义 getter 和 setter 。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">Object</span>.defineProperty(adm.target, propName, &#123;</div><div class="line">    <span class="attr">configurable</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">enumerable</span>: !isComputed,</div><div class="line">    <span class="attr">get</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> observable.get();</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">set</span>: isComputed</div><div class="line">        ? throwingComputedValueSetter</div><div class="line">        : createSetter(adm, observable <span class="keyword">as</span> ObservableValue&lt;any&gt;, propName)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>详见<a href="https://github.com/mobxjs/mobx/blob/44a86f45170d52368858d27ea3bc77ed583a58fa/src/types/observableobject.ts#L108-L117" target="_blank" rel="external">源码</a></p>
+<h1 id="ComputedValue"><a href="#ComputedValue" class="headerlink" title="ComputedValue"></a>ComputedValue</h1><p>ComputedValue 同时实现了 Observable 和 Derivation 的接口，即可以监听 Observable，也可以被 Derivation 监听。</p>
+<h1 id="Reaction"><a href="#Reaction" class="headerlink" title="Reaction"></a>Reaction</h1><p>Reaction 本质上是 Derivation，但他不能再被其他 Derivation 监听。</p>
+<h1 id="Autorun"><a href="#Autorun" class="headerlink" title="Autorun"></a>Autorun</h1><p>autorun 是 Reaction 的<a href="https://github.com/mobxjs/mobx/blob/e195b01d0dd6516480c76a6e952dda206e612a31/src/api/autorun.ts#L14-L27" target="_blank" rel="external">简单封装</a>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">autorun</span>(<span class="params">view: Lambda, scope?: any</span>) </span>&#123;</div><div class="line">	assertUnwrapped(view, <span class="string">"autorun methods cannot have modifiers"</span>);</div><div class="line">	invariant(<span class="keyword">typeof</span> view === <span class="string">"function"</span>, <span class="string">"autorun expects a function"</span>);</div><div class="line">	invariant(view.length === <span class="number">0</span>, <span class="string">"autorun expects a function without arguments"</span>);</div><div class="line">	<span class="keyword">if</span> (scope)</div><div class="line">		view = view.bind(scope);</div><div class="line"></div><div class="line">	<span class="keyword">const</span> reaction = <span class="keyword">new</span> Reaction(view.name || (<span class="string">"Autorun@"</span> + getNextId()), <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">this</span>.track(view);</div><div class="line">	&#125;);</div><div class="line">	reaction.schedule();</div><div class="line"></div><div class="line">	<span class="keyword">return</span> reaction.getDisposer();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="同步执行"><a href="#同步执行" class="headerlink" title="同步执行"></a>同步执行</h1><p>其他的 TFRP 类库，比如 Tracker 和 Knockout ，数据更新后的执行都是异步的，需要等到下一个 event loop 。(可以想象成 setTimeout)</p>
+<p>而 Mobx 的执行是同步的，这样做有两个好处：</p>
+<ul>
+<li>ComputedValue 在他依赖的值修改后可以马上被使用，这样你就永远不会使用一个过期的 ComputedValue</li>
+<li>调试方便，堆栈里没有冗余的 Promise / async 库</li>
+</ul>
+<h1 id="Transation"><a href="#Transation" class="headerlink" title="Transation"></a>Transation</h1><p>由于 mobx 的更新是同步的，所以每 set 一个值，就会触发 reaction 的更新。所以为了批量更新，就引入了 transation 。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">transaction(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  user.firstName = <span class="string">"foo"</span>;</div><div class="line">  user.lastName = <span class="string">"bar"</span>;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>在一些情况下，等所有的修改执行完再执行所有的 deviration 会更合适。注意 transaction 只是推迟了 deviration 的执行，本身还是同步的。</p>
+<h1 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h1><p>action 是 transation 是简单封装，支持通过 decorator 的方式调用。并且是 untrack 的，这样可以在 Derivation 里调用他。</p>
+<h1 id="Observe-mobx-react"><a href="#Observe-mobx-react" class="headerlink" title="Observe(mobx-react)"></a>Observe(mobx-react)</h1><p>第一次render时：</p>
+<pre><code>* 初始化一个 Reaction，onValidate 时会 forceUpdate Component
+* 在 reaction.track 里执行 baseRender，建立依赖关系
+</code></pre><p>有数据修改时：</p>
+<pre><code>* 触发 onValidate 方法，执行 forceUpdate
+* 触发 render 的执行 (由于在 reaction.track 里执行，所以会重新建立依赖关系)
+</code></pre><p>shouldComponentUpdate：</p>
+<pre><code>* 和 PureRenderMixin 类似的实现，阻止不必要的更新
+</code></pre><p>componentWillReact:</p>
+<pre><code>* 数据更新的时候触发
+* 注意和 componentWillMount 和 componentWillUpdate 的区别
+</code></pre><p><a href="https://github.com/mobxjs/mobx" target="_blank" rel="external">https://github.com/mobxjs/mobx</a><br><a href="https://medium.com/@mweststrate/becoming-fully-reactive-an-in-depth-explanation-of-mobservable-55995262a254#.4sxpfpsuk" target="_blank" rel="external">https://medium.com/@mweststrate/becoming-fully-reactive-an-in-depth-explanation-of-mobservable-55995262a254#.4sxpfpsuk</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/03/22/2017-03-22-frontend-interview-question/" data-toggle="tooltip" data-placement="top" title="Frontend Interview Question">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/03/09/2017-03-09-functional-program/" data-toggle="tooltip" data-placement="top" title="Functional Program">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Mobx" title="Mobx">Mobx</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "blog-asherjia-com";
+    var disqus_identifier = "http://blog.asherjia.com/2017/03/17/2017-03-17-mobx/";
+    var disqus_url = "http://blog.asherjia.com/2017/03/17/2017-03-17-mobx/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Asher&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://blog.asherjia.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://blog.asherjia.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Freshman Guide - AsherJia的博客 | AsherJia&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://blog.asherjia.com/2017/01/06/2017-01-06-freshman-guide/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Asher&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/news/">News</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://blog.asherjia.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('nodejs.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Guide" title="Guide">Guide</a>
+                        
+                    </div>
+                    <h1>Freshman Guide</h1>
+                    <h2 class="subheading">Guide</h2>
+                    <span class="meta">
+                        Posted by Asher on
+                        2017-01-06
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是<a href="https://github.com/inetfuture" target="_blank" rel="external">前老大</a>对工作的一些指导和要求, 我在这里做了一些整理和补充。<br>作为一名开发者首先要做到的是有<code>责任心</code>, 其次是<code>Be Professional!</code>。</p>
+<h1 id="必读数据"><a href="#必读数据" class="headerlink" title="必读数据"></a>必读数据</h1><ul>
+<li><a href="https://git-scm.com/book/zh/v2" target="_blank" rel="external">Pro Git</a></li>
+<li><a href="http://mislav.net/2013/02/merge-vs-rebase/" target="_blank" rel="external">Git merge-vs-rebase</a></li>
+<li><a href="http://slides.com/inetfuture/how-to-name-things" target="_blank" rel="external">how-to-name-things</a></li>
+<li><p><a href="restful_api.md">RESTful API</a></p>
+</li>
+<li><p>《代码整洁之道》</p>
+</li>
+<li>《深入理解计算机系统》</li>
+<li>《敏捷软件开发 : 原则、模式与实践》</li>
+<li>《TCP/IP 详解 卷1》</li>
+<li><a href="git.md">Git</a></li>
+<li><p><a href="https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md" target="_blank" rel="external">the-art-of-command-line</a></p>
+</li>
+<li><p><a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">Oh My Zsh</a></p>
+</li>
+<li><a href="https://trello.com" target="_blank" rel="external">Trello</a></li>
+<li><a href="http://devdocs.io/" target="_blank" rel="external">DevDocs</a></li>
+</ul>
+<p><a href="https://github.com/CraryPrimitiveMan" target="_blank" rel="external">扩展阅读</a></p>
+<h1 id="必备工具"><a href="#必备工具" class="headerlink" title="必备工具"></a>必备工具</h1><h2 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h2><ul>
+<li><a href="http://gjsq.me/23186204" target="_blank" rel="external">GreenVPN</a></li>
+</ul>
+<h2 id="Sublime-Text"><a href="#Sublime-Text" class="headerlink" title="Sublime Text"></a>Sublime Text</h2><h3 id="Package-Control"><a href="#Package-Control" class="headerlink" title="Package Control"></a>Package Control</h3><ul>
+<li>Sublime Text 2</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib2,os,hashlib; h = <span class="string">'df21e130d211cfc94d9b0905775a7c0f'</span> + <span class="string">'1e3d39e33b79698005270310898eea76'</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(ipp) <span class="keyword">else</span> <span class="keyword">None</span>; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( <span class="string">'http://packagecontrol.io/'</span> + pf.replace(<span class="string">' '</span>, <span class="string">'%20'</span>)).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), <span class="string">'wb'</span> ).write(by) <span class="keyword">if</span> dh == h <span class="keyword">else</span> <span class="keyword">None</span>; print(<span class="string">'Error validating download (got %s instead of %s), please try manual install'</span> % (dh, h) <span class="keyword">if</span> dh != h <span class="keyword">else</span> <span class="string">'Please restart Sublime Text to finish installation'</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>Sublime Text 3</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib.request,os,hashlib; h = <span class="string">'df21e130d211cfc94d9b0905775a7c0f'</span> + <span class="string">'1e3d39e33b79698005270310898eea76'</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( <span class="string">'http://packagecontrol.io/'</span> + pf.replace(<span class="string">' '</span>, <span class="string">'%20'</span>)).read(); dh = hashlib.sha256(by).hexdigest(); print(<span class="string">'Error validating download (got %s instead of %s), please try manual install'</span> % (dh, h)) <span class="keyword">if</span> dh != h <span class="keyword">else</span> open(os.path.join( ipp, pf), <span class="string">'wb'</span> ).write(by)</div></pre></td></tr></table></figure>
+<p>必备插件：Git，GitGutter，knockdown，SublimeLinter，DocBlockr，EditorConfig，Emmet，FileDiffs，SublimeCodeIntel, SidebarEnhancements, PackageSync</p>
+<h1 id="做事原则、方法"><a href="#做事原则、方法" class="headerlink" title="做事原则、方法"></a>做事原则、方法</h1><ul>
+<li><p>主动沟通而不是被动应付</p>
+<ul>
+<li>工作上存在任何让你不爽的事时，尽量提出来，所有的问题都可以讨论、协调、缓解，甚至完全避免，长期压抑着会影响自己的工作效率和积极性，对个人和团队都不利。</li>
+<li>对需求、开发规范、代码组织等等各方面存在任何疑问时，主动询问和讨论，不要默不作声、自作主张导致返工和延误。</li>
+<li>自己的代码被别人 Review 时，如果觉得某段代码可能有问题或者不是最优方案，主动提出来讨论，而不是等待审查者询问。前者可以使 Review 更高效，更利于培养同事间的相互信任，后者一是效率低，同时也是一种不负责任的表现。</li>
+<li>进度存在风险时主动知会其他人，而不是默默拖到最后一刻连累大家加班。</li>
+<li>做变更时及时通知相关人员，否则可能会浪费队友的时间去排查问题。代码级别的问题可以通过在 GitLab 等代码管理工具上 at 对方。</li>
+</ul>
+</li>
+<li><p>认真负责，关注细节，追求卓越</p>
+<ul>
+<li>每一份需求都要理解之后再动手，感觉需求不合理或不明确的要提出来讨论，对产品要有责任心，不仅仅是“按部就班”得做事情。</li>
+<li>提交前仔细测试自己实现的功能，检查代码细节，有交付高质量代码的责任心，而不是依赖其他成员帮你 Reivew 或者 QA 帮你发现 bug 。</li>
+<li>代码仅仅可以工作是不够的，还要可读、易扩展、可维护、安全、高效，等等等等，要用高标准要求自己，写代码要“上心”，不要敷衍、随意。</li>
+<li>细节不一定决定成败但却可以充分体现一个人的工作态度，请认真对待各种流程、规范，比如写英文邮件时，从语法、格式到每一个拼写、标点，再比如 Commit Message 的格式、Coding Style 等等。</li>
+</ul>
+</li>
+<li><p>自我驱动</p>
+<ul>
+<li>自觉深入学习相关技术，而不是用多少学多少，临时抱佛脚。假设你在做 IOS 开发，即便目前所有项目仍在用 Objective-C ，你也应该利用业余时间自觉去学习 Swift ，时刻准备着。</li>
+<li>主动思考产品的走向，自觉进行知识储备、调研。</li>
+<li>自觉重构低质量代码，改善项目流程，等等，保证项目的健康发展。</li>
+</ul>
+</li>
+<li><p>换位思考</p>
+<ul>
+<li>使用邮件、微信等工具交流时一次性提供必要的上下文，避免低效率的沟通，想一下，我这样描述对方是否可以理解并直接回复。</li>
+<li>无论是做 Code Review 还是提交功能给 QA 测试，尽自己最大努力保证质量，做好自己分内的事，减轻队友的负担。</li>
+<li>作为开发，想一下我该怎样为 leader 分担压力？作为 leader ，想一下我该怎样促进下属工作能力的稳步成长？</li>
+</ul>
+</li>
+<li><p>从根本上解决问题</p>
+<ul>
+<li>思考问题的原因，不要停留于表面问题的修修补补。</li>
+</ul>
+</li>
+<li><p>用正确的方式解决问题</p>
+<ul>
+<li>很多问题都有不止一种的解决办法，不要满足于你最初想到的那种，也许有更好的呢？主动去思考目前的方案可维护吗？方便吗？效率高吗？普适吗？</li>
+<li>多看一些最佳实践（Best Practice）的资料，多看一些优秀开源项目的源代码，多了解别人怎么做的你才能及时发现自己的不足。</li>
+<li>不要重复造轮子，尤其是使用第三方库时，也许人家已经提供了现成的解决方案，只是因为你没有仔细看文档，所以不知道。</li>
+</ul>
+</li>
+<li><p>磨刀不误砍柴工</p>
+<ul>
+<li>学习新知识要尽可能的系统、全面，不要只是为了应付当前工作片面了解。</li>
+<li>使用第三方库、框架时应尽量通读其文档，至少要知道它可以做什么，有哪些限制，遇到具体问题后可以迅速到文档中查看细节。</li>
+<li>常用的技术点要舍得花时间搞清楚其运行原理、内部机制，免的每次出问题都像无头苍蝇，只能瞎猜。比如 Angular.js 的 directive 编译流程是怎样的？Node.js 的异步 IO 是如何运行的？</li>
+<li>工欲善其事，必先利其器。平时要注意效率工具的积累，包括好的代码编辑器、命令行工具、任务管理工具、各种实用小工具等等。对于你常用的编辑器或 IDE 应该花一些时间去熟练它的快捷键，寻找一些好用的插件，毕竟工作每天都要用，投入的精力绝对物超所值。</li>
+</ul>
+</li>
+</ul>
+<h1 id="编写整洁代码"><a href="#编写整洁代码" class="headerlink" title="编写整洁代码"></a>编写整洁代码</h1><blockquote>
+<p>Writing clean code requires the disciplined use of a myriad little techniques applied through a painstakingly acquired sense of “cleanliness”. This “code-sense” is the key. Some of us are born with it. Some of us have to fight to acquire it. Not only does it let us see whether code is good or bad, but it also shows us the strategy for applying our discipline to transform bad code into clean code.</p>
+</blockquote>
+<h2 id="基本要求"><a href="#基本要求" class="headerlink" title="基本要求"></a>基本要求</h2><ul>
+<li>Coding Style，如果有要求，应该严格遵循，任何例外的情况需要讨论决定。</li>
+<li>可读性，要容易理解，命名要具有足够描述性，不能有歧义，代码路径、结构要清晰、简洁。</li>
+<li>一致性，包括但不限于标识符命名、错误处理、日志格式、文件组织方式、HTTP API 接口设计、UI 交互等各个方面，越是一致的系统越容易上手，越容易维护，反之则维护成本越高。</li>
+<li>健壮性，进行必要的输入验证，充分得考虑边界情况，异常处理要周全，防止内存泄露，防止竞态条件，多线程安全，等等。</li>
+<li>性能，考虑数据量大或者访问频繁时的情况，对内存、数据库的使用要高效，算法要尽量最优。<ul>
+<li>任何涉及数量的地方，在业务场景合理的前提下考虑把数量放大到最大，为最坏的情况做打算。</li>
+<li>数据库：<ul>
+<li>操作应尽量批量进行，只查询必需的字段，减少 IO 消耗。</li>
+<li>特别大的查询应在数据库中分页，由程序控制分批次处理，全量取出在内存中计算或者根本不考虑数据量大小是常见的低级错误。</li>
+<li>合理使用索引。</li>
+</ul>
+</li>
+<li>基本优化思路：<ul>
+<li>预先筛选数据，减少不必要的计算。</li>
+<li>缓存计算结果，减少重复计算。</li>
+<li>使用高效数据结构，空间换时间。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>安全性，进行必要的权限检查，不能过度信任客户端输入。</li>
+<li>DRY（Don’t Repeat Yourself）原则，复制、粘贴的行为是要坚决禁止的，不知道如何复用代码的要主动与其他成员讨论。</li>
+<li>单一职责原则，一个类、文件或者模块不能做的太多，不能做不该它做的事，好的设计是只把一件事做好。</li>
+<li>开放、封闭原则，要方便扩展，要考虑到以后的需求。</li>
+<li>代码改动方式要合适，不能一味得堆砌代码，需要适时停下来进行重构。</li>
+<li>保持干净，不能存在任何无用的文件、代码，所有文档、注释需要同步更新，不能包含注释掉的代码，不能包含临时调试代码，例外情况应该添加注释说明。</li>
+<li>所有 Warning 都应该被立即修复，觉得不需要修的，讨论决定后通过修改配置文件禁用掉。</li>
+</ul>
+<h2 id="进阶要求"><a href="#进阶要求" class="headerlink" title="进阶要求"></a>进阶要求</h2><ul>
+<li>使用多态减少或转移 <code>if</code> 判断，(Video)[<a href="https://www.youtube.com/watch?v=4F72VULWFvc&amp;index=1&amp;list=PL693EFD059797C21E" target="_blank" rel="external">https://www.youtube.com/watch?v=4F72VULWFvc&amp;index=1&amp;list=PL693EFD059797C21E</a>]</li>
+</ul>
+<h2 id="提高代码可读性的技巧"><a href="#提高代码可读性的技巧" class="headerlink" title="提高代码可读性的技巧"></a>提高代码可读性的技巧</h2><ul>
+<li>局部变量尽量就近声明。</li>
+<li>return early (V1)[<a href="https://www.airpair.com/php/posts/best-practices-for-modern-php-development#4-2-try-not-to-use-else-" target="_blank" rel="external">https://www.airpair.com/php/posts/best-practices-for-modern-php-development#4-2-try-not-to-use-else-</a>] (V2)[<a href="http://www.codeproject.com/Articles/626403/How-and-Why-to-Avoid-Excessive-Nesting" target="_blank" rel="external">http://www.codeproject.com/Articles/626403/How-and-Why-to-Avoid-Excessive-Nesting</a>]</li>
+<li>相关的代码尽量按使用顺序组织在一起，尤其是添加新代码时，不要一味得添加到文件尾部。</li>
+<li>布尔变量命名应尽量采用肯定形势。</li>
+<li>避免硬编码数字、字符串，应使用常量并给它们有意义的名字。</li>
+<li>传递简单数据类型时，适当添加临时变量提高可读性。</li>
+</ul>
+<h2 id="如何写注释"><a href="#如何写注释" class="headerlink" title="如何写注释"></a>如何写注释</h2><ul>
+<li>代码的意图应该由代码自身来表达，即所谓的可读性，不应该依赖于注释说明，所以优先考虑写更可读的代码。</li>
+<li>代码意图明显的情况下，不要加注释重复说明。</li>
+<li>以下注释是合理的或者说以下情况需要写注释：<ul>
+<li>纲要性的注释，简要的描述某一个文件、某一个类或某一个流程。</li>
+<li>确实无法从代码本身提高可读性的情况，比如复杂业务逻辑、算法。</li>
+<li>代码的作用并不直观时，解释这样做的原因。</li>
+<li>存在多种可选方案时，解释为什么选择现在这种。</li>
+<li>因为某些限制而使代码不一致、不优雅或存在副作用时，应注明原因及后果。</li>
+<li>参考了外部一些资料时，应注明链接，方便其他人查看。</li>
+<li>临时标记注释：TODO、FIXME、HACK、OPTIMIZE、REVIEW。</li>
+</ul>
+</li>
+<li>注释应随代码更新。</li>
+</ul>
+<h1 id="Coding-Style"><a href="#Coding-Style" class="headerlink" title="Coding Style"></a>Coding Style</h1><h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><ul>
+<li><a href="https://github.com/Aaaaaashu/Front-End-Style-Guide" target="_blank" rel="external">Front End Style Guide</a></li>
+<li><a href="https://github.com/maban/styleguides" target="_blank" rel="external">Style Guide Articles</a></li>
+<li><a href="http://primercss.io/guidelines/" target="_blank" rel="external">PrimerCSS</a></li>
+</ul>
+<h3 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h3><ul>
+<li><a href="https://github.com/polarmobile/coffeescript-style-guide" target="_blank" rel="external">Coffeescript</a></li>
+<li><a href="https://github.com/airbnb/javascript" target="_blank" rel="external">ES6</a></li>
+<li><a href="https://github.com/yuche/javascript" target="_blank" rel="external">ES6中文版</a></li>
+<li><a href="https://github.com/adamlu/javascript-style-guide" target="_blank" rel="external">ES6中文调整版</a></li>
+<li><a href="https://github.com/airbnb/javascript/tree/master/es5" target="_blank" rel="external">ES5</a></li>
+<li><a href="https://github.com/sivan/javascript-style-guide/blob/master/es5/README.md" target="_blank" rel="external">ES5中文版</a></li>
+<li><a href="https://github.com/airbnb/css" target="_blank" rel="external">CSS/SASS/LESS</a></li>
+<li><a href="https://github.com/dropbox/css-style-guide" target="_blank" rel="external">Project CSS</a></li>
+</ul>
+<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><ul>
+<li><a href="https://github.com/johnpapa/angular-styleguide" target="_blank" rel="external">AngularJS</a></li>
+<li><a href="https://github.com/mgechev/angularjs-style-guide" target="_blank" rel="external">AngularJS Best Practice</a></li>
+<li><a href="https://github.com/gocardless/angularjs-style-guide" target="_blank" rel="external">Project AngularJS</a></li>
+</ul>
+<h2 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h2><h3 id="语言-1"><a href="#语言-1" class="headerlink" title="语言"></a>语言</h3><ul>
+<li><a href="http://www.php-fig.org/psr/psr-1/" target="_blank" rel="external">PHP PSR1</a></li>
+<li><a href="http://www.php-fig.org/psr/psr-2/" target="_blank" rel="external">PHP PSR2</a></li>
+<li><a href="https://bingohuang.gitbooks.io/effective-go-lite-edition/content/" target="_blank" rel="external">Effective Go Lite</a></li>
+<li><a href="https://golang.org/doc/effective_go.html" target="_blank" rel="external">Effective Go</a></li>
+<li><a href="http://www.chingli.com/coding/effective-go/" target="_blank" rel="external">Effective Go中文版</a></li>
+<li><a href="https://medium.com/@IndianGuru/best-practices-for-a-new-go-developer-8660384302fc" target="_blank" rel="external">Best Practice for Go Developer</a></li>
+</ul>
+<h1 id="Code-Review"><a href="#Code-Review" class="headerlink" title="Code Review"></a>Code Review</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ul>
+<li>提高代码质量，查漏补缺。</li>
+<li>相互学习。</li>
+<li>促进项目内知识流动，防止对某个个人过分依赖。</li>
+</ul>
+<h2 id="Commit-Message-规范"><a href="#Commit-Message-规范" class="headerlink" title="Commit Message 规范"></a>Commit Message 规范</h2><p>规定格式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(scope): $(subject)</div><div class="line"></div><div class="line">$(description)</div></pre></td></tr></table></figure>
+<ul>
+<li><code>$(scope)</code>：必需，取决于具体项目，一般为项目功能模块、组件的名字，用来描述本次 commit <strong>影响的范围</strong>，比如 <a href="https://github.com/nodejs/node/commits/master" target="_blank" rel="external">https://github.com/nodejs/node/commits/master</a> 。影响多个模块、组件可以用 <code>,</code> 隔开。后加入项目的新成员应遵循已有的 scope 约定（通过 <code>git log</code> 可以查看某个文件的提交历史），不要自己编造。使用首字母小写的驼峰命名。<code>bug</code> 、 <code>hotfix</code> 、 <code>task</code> 、 <code>change</code> 、<code>refactor</code> 等等描述的都不是影响的具体范围，而是改动类型，不能用作 scope 。除具体的模块、组件名之外，可以使用 <code>base</code> 表示基础结构、框架相关的改动。</li>
+<li><code>$(subject)</code>：必需，50 个字符左右的简要说明，首字母小写，通常是动宾结构，描述做了什么事情，动词用一般现在时，禁止出现 <em>update code</em> ， <em>fix bug</em> 等无实际意义的描述，好的例子： <em>select connector by sorting free memory</em> （不需要形如 <em>update about how to select connector …</em> 的啰嗦写法）, <em>fix sucess tip can not show on IE8</em> （不需要形如 <em>fix bug of …</em> 的啰嗦写法）。</li>
+<li><code>$(description)</code>：可选，详细说明，建议使用列表罗列要点。</li>
+</ul>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><ol>
+<li>提交者发起 topic 分支到目标分支的 Merge Request 。<ul>
+<li>代码变动要尽量小且专注于一个任务，不要攒的很大，或者做多个任务，要保证审查者可以较快、较容易的 Review 。</li>
+<li>如果与目标分支有冲突，提交者应该自己使用 <code>git rebase</code> 或 <code>git merge</code>（共享分支的情况）解决。</li>
+<li>交给别人之前一定要自己先 Review 一遍，别人只是帮你查漏补缺，对自己的代码负责，不要浪费别人的时间。</li>
+<li>发起后，要在 GitLab 或者其它 Review 工具上 double check 变更集。</li>
+</ul>
+</li>
+<li>审查者 Review 代码。<ul>
+<li>对 <a href="#编写整洁代码">编写整洁的代码</a> 中各项要求进行检查</li>
+<li>在任何有疑问或建议的地方留 comment。</li>
+<li>从中学习一些好的东西。</li>
+<li>完成后，如果有问题需要修复，留 comment “WFF”，表示“waiting for fix”，否则进行第 4 步。</li>
+</ul>
+</li>
+<li>提交者响应 comments 。<ul>
+<li>确实有问题的，修复之。如果该分支未被其他人使用，应使用 <code>git commit --amend</code> 提交以减少不必要的 commit 历史。</li>
+<li>不同意的，讨论。</li>
+<li>完成后，留 comment “Fixed”，审查者再次检查，回到第二步。</li>
+</ul>
+</li>
+<li>审查者确认没有问题之后，将 Merge Request 转发给目标分支的维护者进行合并。</li>
+</ol>
+<h1 id="调试技巧"><a href="#调试技巧" class="headerlink" title="调试技巧"></a>调试技巧</h1><ul>
+<li>查看日志，比如做 PHP Web 开发要知道 Nginx，PHP-FPM，PHP 的日志文件的位置，必要的时候从中寻找线索。使用 <code>tail -F file1 file2</code> 命令可以持续监控多个文件。</li>
+<li>通过添加临时 log 语句或断点的形式检查代码路径，很多时候调试是个体力活，并没有什么难度，不要轻易放弃或寻求他人帮助。检查代码是否按预期路径执行了，如果没有，为什么？输入数据的原因吗？或者中间一步数据处理是错的？从数据进入系统开始一步步从前往后分析，用排除法逐步缩小范围，bug 必将无所遁形。另外，有时候代码路径可能牵扯到第三方库，这个时候不要畏惧，代码都是人写的，尤其开源项目通常质量较高，进去看一下，通常没你想象的那么难。</li>
+<li>确保读懂日志消息、异常信息、错误输出等，特别是英文内容，不要因为是英文不想读，结果非常明显的线索摆在你面前你却视而不见。比如常见的 git 错误，都会有相应的描述甚至建议的解决办法。再比如做 Web 开发，一个页面打不开，最起码你要先看一下 HTTP Response 是什么，状态码，body 等。如果实在看不懂，google 之。</li>
+<li>有意识的组织整理常见错误，依据过往经验快速定位问题。例如 PHP 开发时碰到 HTTP 404，基本可以排除代码逻辑问题，应该检查拼写错误、Nginx 配置、MVC 框架路由配置、文件路径等。</li>
+<li>使用第三方组件时，遇到问题要知道去查看它的 issue 列表，也许别人也遇到了同样的问题并且已经报了 Bug ，尤其是 GitHub 上的开源项目。</li>
+</ul>
+<h1 id="Research-技巧"><a href="#Research-技巧" class="headerlink" title="Research 技巧"></a>Research 技巧</h1><p>工作中难免需要学习新技术，这个过程中也有一些技巧可以实践。</p>
+<ul>
+<li><p>使用 Google 搜索，除非是特定于国内的东西，比如微信开发相关，不要使用百度。</p>
+<p>  百度搜索质量偏低是事实，一方面是受限于百度自身的技术，另一方面是因为中文搜索有很多垃圾站，以及低质量的转载博客。经常出现前几页都是各种垃圾站在重复同一篇文章，而且广告满天飞，排版稀烂。还有新浪、网易的博客，很多都是复制粘贴的转载，格式一团糟，原文却不知所踪。更不要提很多技术中文资料相对较少，更新不及时，翻译质量不高等等问题。</p>
+<p>  养成使用在 Google 上使用英文关键词搜索的好习惯绝对可以节省你的大量时间和精力。</p>
+</li>
+<li><p>搜索时要注意时效性</p>
+<p>  取决于具体的技术，搜索出来的东西很多可能已经过时了，要注意区分，不要被过时的东西误导。快速浏览搜索结果时捎带看一下时间也是一个好习惯，有多条相似结果时当然是最新的会靠谱一点。</p>
+</li>
+<li><p>掌握使用搜索引擎的一些小技巧，<a href="http://www.lifehack.org/articles/technology/20-tips-use-google-search-efficiently.html" target="_blank" rel="external">http://www.lifehack.org/articles/technology/20-tips-use-google-search-efficiently.html</a></p>
+</li>
+<li><p>注意搜集、整理一些高质量的网站、博客</p>
+<p>  当你研究一个新东西的时候肯定会进行很多搜索，其中有些结果可能质量很高，这时可以快速浏览一下这个网站或者博客的首页，看看是否有收藏价值，或者有没有其它相关文章值得看一下。</p>
+</li>
+<li><p>阅读权威、系统的书籍</p>
+<p>  通过使用搜索引擎或者阅读博客等通常可以对某种技术有个大概了解，或者可以解决某个具体问题，但是对于较复杂的技术，系统学习是必不可少的，看书往往是最有效的方式。可以到豆瓣阅读或者各大电商网站上通过评分排名来筛选好的书籍。如果是国外书籍，尽量选择英文原版，一开始会比较吃力，熟悉了就好了。</p>
+<p>  跟筛选搜索结果一样，尽量选择较新的书籍。</p>
+</li>
+<li><p>持续关注</p>
+<p>  每个人理解新事物都有一个从浅入深的过程，新学的技术最好可以不断夯实，反复咀嚼，不要停留在表面。可以通过订阅一些邮件列表、知名博客来不断补充知识盲点，学习最佳实践，反思自己的不足，以及了解技术的最新动态。</p>
+</li>
+</ul>
+<h1 id="沟通技巧"><a href="#沟通技巧" class="headerlink" title="沟通技巧"></a>沟通技巧</h1><ul>
+<li>尽量提供完整的上下文，前因后果交代清楚，尤其是对话刚开时的时候，不要急于切入重点，先确保对方了解足够的背景，避免不必要的背景交代相关的往复提问和回答。</li>
+<li>问问题时，除了问实际的问题外，最好也解释一下这个问题的来由，这个问题哪儿来的，为什么有这个问题或疑问。这样通常可以帮助回答者更能抓住问题的重点，更准确的回答。</li>
+<li>回答问题时，对于是或否的疑问句，尽量先直接了当的回答，然后有必要的话再补充或解释。</li>
+<li>回答进度估计等相关问题时，不要使用“差不多”、“快了”等模糊词汇，应该具体一点，比如“90% 都做完了，还剩xxx，下午可以完成”。</li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/01/06/2017-01-06-nodejs/" data-toggle="tooltip" data-placement="top" title="NodeJS">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/12/06/2016-12-06-jekyll-github-page-travis-ci/" data-toggle="tooltip" data-placement="top" title="Jekyll + Github pages + Travis">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Guide" title="Guide">Guide</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "blog-asherjia-com";
+    var disqus_identifier = "http://blog.asherjia.com/2017/01/06/2017-01-06-freshman-guide/";
+    var disqus_url = "http://blog.asherjia.com/2017/01/06/2017-01-06-freshman-guide/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Asher&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://blog.asherjia.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://blog.asherjia.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
