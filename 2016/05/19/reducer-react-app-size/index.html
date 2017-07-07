@@ -13,11 +13,11 @@
 
     <title>
         
-          AsherJia的博客 | AsherJia&#39;s Blog
+          Reducer React App&#39;s Size In Production - AsherJia的博客 | AsherJia&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://blog.asherjia.com/page/3/">
+    <link rel="canonical" href="http://blog.asherjia.com/2016/05/19/reducer-react-app-size/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -154,403 +154,133 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://blog.asherjia.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('webpack-bg.png')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Asher&#39;s Blog</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Things change roll with it</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#WebPack" title="WebPack">WebPack</a>
+                        
+                    </div>
+                    <h1>Reducer React App&#39;s Size In Production</h1>
+                    <h2 class="subheading">webpack</h2>
+                    <span class="meta">
+                        Posted by Asher on
+                        2016-05-19
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <!-- Main Content -->
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p><a href="https://medium.com/@rajaraodv/two-quick-ways-to-reduce-react-apps-size-in-production-82226605771a#.qaey3854r" target="_blank" rel="external">App</a>{:target=”_block”}</p>
+<p>If you are building a React + Redux App that has Webpack, then you might have noticed that the size of the final bundle.js (the dev version) for a simple app itself could be 1MB- 2MB!<br>For example: Below is a picture from Webpack stats analyzer for the simple react-redux-blog (live). It shows that total size is 1.5MB and 90% (1.2MB) is just libraries in node_modules!</p>
+<p>For example: Below is a picture from Webpack stats analyzer for the simple react-redux-blog (live). It shows that total size is 1.5MB and 90% (1.2MB) is just libraries in node_modules!<br><img src="http://o7d3ayvg2.bkt.clouddn.com/react-redux-webpack-node_modules.png" alt=""></p>
+<p>It could be scary😱 but Webpack and Node.js has all the tools you need to reduce the size.<br>I could reduce the size from 1.5MB to just 90KB by simply doing the following two things:</p>
+<p>1: Add the following Webpack plugins (source code)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">plugins: [</div><div class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123; <span class="comment">// &lt;-- key to reducing React's size</span></div><div class="line">        <span class="comment">// This can reduce react lib size and disable some dev feactures like props validation</span></div><div class="line">        <span class="string">'process.env'</span>: &#123;</div><div class="line">            <span class="string">'NODE_ENV'</span>: <span class="built_in">JSON</span>.stringify(<span class="string">'production'</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;),</div><div class="line">    <span class="keyword">new</span> webpack.optimize.DedupePlugin(), <span class="comment">//dedupe similar code</span></div><div class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(), <span class="comment">//minify everything</span></div><div class="line">    <span class="keyword">new</span> webpack.optimize.AggressiveMergingPlugin()<span class="comment">//Merge chunks</span></div><div class="line">  ],</div></pre></td></tr></table></figure>
+<blockquote>
+<p>DefinePlugin<br>The DefinePlugin allows you to create global constants which can be configured at compile time. This can be very useful for allowing different behaviour between development builds and release builds. For example, you might use a global constant to determine whether logging takes place; perhaps you perform logging in your development build but not in the release build. That’s the sort of scenario the DefinePlugin facilitates.</p>
+<p>DedupePlugin<br>Search for equal or similar files and deduplicate them in the output. This comes with some overhead for the entry chunk, but can reduce file size effectively.</p>
+</blockquote>
+<p>This doesn’t change the module semantics at all. Don’t expect to solve problems with multiple module instance. They won’t be one instance after deduplication.</p>
+<p><code>Note: Don’t use it in watch mode. Only for production builds.</code></p>
+<blockquote>
+<p>UglifyJsPlugin<br>Minimize all JavaScript output of chunks. Loaders are switched into minimizing mode.<br>You can pass an object containing <a href="https://github.com/mishoo/UglifyJS2#usage" target="_blank" rel="external">UglifyJS options</a>{:target=”_block”}.</p>
+<p>AggressiveMergingPlugin<br>A plugin for a more aggressive chunk merging strategy. Even similar chunks are merged if the total size is reduced enough. As an option modules that are not common in these chunks can be moved up the chunk tree to the parents.</p>
+</blockquote>
 
 
-<div class="post-preview">
+                <hr>
 
-    <a href="/2016/05/19/frontend-summary/">
-        <h2 class="post-title">
-            Frontend Summary
-        </h2>
-        <h3 class="post-subtitle">
-            Frontend
-        </h3>
-        <div class="post-content-preview">
-            LazyMan123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354function _LazyMan(name)&#123;    this.task = [];    var self = this;    var fn = (function(......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Asher on
-        2016-05-19
-    </p>
+                
 
-</div>
-<hr>
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/05/19/javascript-summary/" data-toggle="tooltip" data-placement="top" title="Javascript Summary">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/05/19/frontend-summary/" data-toggle="tooltip" data-placement="top" title="Frontend Summary">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
-<div class="post-preview">
+                
 
-    <a href="/2016/05/19/frontend/">
-        <h2 class="post-title">
-            前端Github收集
-        </h2>
-        <h3 class="post-subtitle">
-            Github
-        </h3>
-        <div class="post-content-preview">
-            http://yaowenjie.github.io/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/using-browser-sync-to-test-in-many-plantforms-synchronously
-慢慢整理
-HTML/CSS
-html5-boilerplate{:target=”_blank”}
-html5demos{:target=”_bl......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Asher on
-        2016-05-19
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/19/understore-analysis/">
-        <h2 class="post-title">
-            Understore
-        </h2>
-        <h3 class="post-subtitle">
-            understore 源码分析
-        </h3>
-        <div class="post-content-preview">
-            ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Asher on
-        2016-05-19
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/19/vue-demo/">
-        <h2 class="post-title">
-            Vue
-        </h2>
-        <h3 class="post-subtitle">
-            Github
-        </h3>
-        <div class="post-content-preview">
-            Vue Demo{:target=”_blank”}
-###概述
-
-Vue.js（读音 /vjuː/, 类似于 view）是一个构建数据驱动的 web 界面的库。Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。
-Vue.js 自身不是一个全能框架——它只聚焦于视图层。因此它非常容易学习，非常容易与其它库或已有项目整合。另一方面，在与相关工具和支持库一起使用......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Asher on
-        2016-05-19
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/19/underscore/">
-        <h2 class="post-title">
-            underscore
-        </h2>
-        <h3 class="post-subtitle">
-            Github
-        </h3>
-        <div class="post-content-preview">
-            http://www.css88.com/doc/underscore1.8.2/docs/underscore.html
-Underscore source code12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Asher on
-        2016-05-19
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/19/flex-layout/">
-        <h2 class="post-title">
-            Flex 布局
-        </h2>
-        <h3 class="post-subtitle">
-            弹性布局
-        </h3>
-        <div class="post-content-preview">
-            Flex 布局Flex是Flexible Box的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。任何一个容器都可以指定为Flex布局.
-123456789.box &#123;    display: flex;    display: -webkit-flex;&#125;.box &#123;    display: inline-flex;    display: -webk......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Asher on
-        2016-05-19
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/19/webpack/">
-        <h2 class="post-title">
-            webpack
-        </h2>
-        <h3 class="post-subtitle">
-            Github
-        </h3>
-        <div class="post-content-preview">
-            WebpackTwo core philosophies of Webpack are:
-
-Everything is a module — Just like JS files can be “modules”, everything else (CSS, Images, HTML) can also be modules. That is, you can require(“myJSfi......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Asher on
-        2016-05-19
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/19/wow-old-or-our-old/">
-        <h2 class="post-title">
-            魔兽老了还是我们长大了
-        </h2>
-        <h3 class="post-subtitle">
-            感动一代人的记忆
-        </h3>
-        <div class="post-content-preview">
-            首先是一段MV，　让我们重温一下那个年代。{:target=”_blank”}
-##　我的魔兽
-
-6月8号我们电影院见。
-
-...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Asher on
-        2016-05-19
-    </p>
-
-</div>
-<hr>
-
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-        <li class="previous">
-            <a href="/page/2/">&larr; Newer Posts</a>
-        </li>
-    
-    
-</ul>
-
-<!-- Live2d -->
-
-    <script type="text/javascript" src="/live2d/script.js"></script>
-    <canvas id="live2dcanvas" width="150" height="300" class="live2d"></canvas>
-    <style>
-      #live2dcanvas {
-        position: fixed;
-        right: 0px;
-        z-index: 999;
-        pointer-events: none;
-        bottom: -60px;
-      }
-    </style>
-    <script>loadlive2d("live2dcanvas" ,"/live2d/assets/Epsilon2.1/Epsilon2.1.model.json")</script>
-  
-
-                <!-- 如果开启评论功能 -->
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
                 
 
             </div>
-    <!-- Sidebar Container -->
+    <!-- Side Catalog Container -->
+        
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
                 sidebar-container
-            ">
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                            <a href="/tags/#WebPack" title="WebPack" rel="2">WebPack</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#HTML" title="HTML" rel="2">HTML</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#前端工具" title="前端工具" rel="2">前端工具</a>
-                            
-                        
-                            
-                            <a href="/tags/#Frontend" title="Frontend" rel="3">Frontend</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#javascript" title="javascript" rel="2">javascript</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Javascript" title="Javascript" rel="2">Javascript</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
+                       
+                          <a class="tag" href="/tags/#WebPack" title="WebPack">WebPack</a>
                         
                     </div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.jpg" />
-                        
-
-                        
-                            <p>择一城终老，遇一人白首</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                                <li>
-                                    <a target="_blank" href="https://twitter.com/asherjia">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                            
-                                <li>
-                                    <a target="_blank" href="https://www.zhihu.com/people/asherjia">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-                                <li>
-                                    <a target="_blank" href="http://weibo.com/asherjia">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/asherjia">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                            
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -573,9 +303,66 @@ Everything is a module — Just like JS files can be “modules”, everythi
                 </ul>
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "blog-asherjia-com";
+    var disqus_identifier = "http://blog.asherjia.com/2016/05/19/reducer-react-app-size/";
+    var disqus_url = "http://blog.asherjia.com/2016/05/19/reducer-react-app-size/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
@@ -726,6 +513,50 @@ Everything is a module — Just like JS files can be “modules”, everythi
 
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          webpack - AsherJia的博客 | AsherJia&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://blog.asherjia.com/2016/05/19/webpack/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Asher&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/news/">News</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://blog.asherjia.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('webpack-bg.png')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#WebPack" title="WebPack">WebPack</a>
+                        
+                    </div>
+                    <h1>webpack</h1>
+                    <h2 class="subheading">Github</h2>
+                    <span class="meta">
+                        Posted by Asher on
+                        2016-05-19
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><p>Two core philosophies of Webpack are:</p>
+<ul>
+<li>Everything is a module — Just like JS files can be “modules”, everything else (CSS, Images, HTML) can also be modules. That is, you can require(“myJSfile.js”) or require(“myCSSfile.css”). This mean we can split any artifact into smaller manageable pieces, reuse them and so on.</li>
+<li>Load only “what” you need and “when” you need — Typically module bundlers take all the modules and generate a large single output “bundle.js” file. But in many real-world apps, this “bundle.js” could be 10MB-15MB and could take forever to load! So Webpack has various features to split your code and generate multiple “bundle” files, and also load parts of the app asynchronously so that you just load what you need and when you need it.</li>
+</ul>
+<h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// golbal install</span></div><div class="line">npm install -g webpack</div><div class="line"></div><div class="line"><span class="comment">// install in your local workspace</span></div><div class="line">npm install --save-dev webpack</div><div class="line"></div><div class="line"><span class="comment">// install webpack dev server</span></div><div class="line">npm install webpack-dev-server --save</div></pre></td></tr></table></figure>
+<h3 id="Devtool"><a href="#Devtool" class="headerlink" title="Devtool"></a>Devtool</h3><blockquote>
+<p>source-map: 在一个单独的文件中产生一个完整且功能完全的文件。这个文件具有最好的source map，但是它会减慢打包文件的构建速度</p>
+<p>cheap-module-source-map: 在一个单独的文件中生成一个不带列映射的map，不带列映射提高项目构建速度，但是也使得浏览器开发者工具只能对应到具体的行，不能对应到具体的列（符号），会对调试造成不便</p>
+<p>eval-source-map: 使用eval打包源文件模块，在同一个文件中生成干净的完整的source map。这个选项可以在不影响构建速度的前提下生成完整的sourcemap，但是对打包后输出的JS文件的执行具有性能和安全的隐患。不过在开发阶段这是一个非常好的选项，但是在生产阶段一定不要用这个选项</p>
+<p>cheap-module-eval-source-map: 这是在打包文件时最快的生成source map的方法，生成的Source Map 会和打包后的JavaScript文件同行显示，没有列映射，和eval-source-map选项具有相似的缺点</p>
+</blockquote>
+<h3 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webapck = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</div><div class="line"><span class="keyword">var</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>)</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="attr">entry</span>: <span class="string">'./src/index.js'</span>,</div><div class="line"></div><div class="line">    <span class="attr">output</span>: &#123;</div><div class="line">        <span class="attr">path</span>: __dirname + <span class="string">'/public'</span>,</div><div class="line">        <span class="attr">publicPath</span>: <span class="string">'/'</span>,</div><div class="line">        <span class="attr">filename</span>: <span class="string">'bundle.js'</span></div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="attr">module</span>: &#123;</div><div class="line">        <span class="attr">loaders</span>: [</div><div class="line">            &#123; <span class="attr">test</span>: <span class="regexp">/\.json$/</span>, <span class="attr">loader</span>: <span class="string">'json'</span> &#125;,</div><div class="line">            &#123; <span class="attr">test</span>: <span class="regexp">/\.jsx?$/</span>, <span class="attr">include</span>: <span class="string">'/public/src'</span>, <span class="attr">loader</span>: <span class="string">'babel'</span> &#125;,</div><div class="line">            &#123; <span class="attr">test</span>: <span class="regexp">/\.css$/</span>, <span class="attr">loader</span>: <span class="string">'style!css?redules!postcss'</span> &#125;, <span class="comment">// 感叹号的作用在于使同一文件能够使用不同类型的loader</span></div><div class="line">            &#123; <span class="attr">test</span>: <span class="regexp">/\.png$/</span>, <span class="attr">loader</span>: <span class="string">'url-loader?limit=1024'</span> &#125;,</div><div class="line">            &#123; <span class="attr">test</span>: <span class="regexp">/\.png$/</span>, <span class="attr">loader</span>: <span class="string">'url-loader'</span>, <span class="attr">query</span>: &#123; <span class="attr">limit</span>: <span class="number">1024</span> &#125; &#125;,</div><div class="line">            &#123;</div><div class="line">                <span class="attr">test</span>: <span class="regexp">/\.jsx?$/</span>,</div><div class="line">                <span class="attr">exclude</span>: <span class="regexp">/(node_modules|bower_components)/</span>,</div><div class="line">                <span class="attr">loader</span>: <span class="string">'babel'</span>,</div><div class="line">                <span class="attr">query</span>: &#123;</div><div class="line">                    <span class="attr">presets</span>: [<span class="string">'react'</span>, <span class="string">'es2015'</span>]</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        ]</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="comment">//.bablerc</span></div><div class="line">    <span class="comment">// &#123;</span></div><div class="line">    <span class="comment">//  "presets": ["react", "es2015"]</span></div><div class="line">    <span class="comment">// &#125;,</span></div><div class="line"></div><div class="line">    resolve: &#123;</div><div class="line">        <span class="attr">extensions</span>: [<span class="string">''</span>, <span class="string">'.js'</span>, <span class="string">'.jsx'</span>]</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="attr">postcss</span>: &#123;</div><div class="line">        <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>)</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="attr">plugins</span>: [</div><div class="line">        <span class="keyword">new</span> HtmlWebpackPlugin&#123;</div><div class="line">            <span class="attr">template</span>: <span class="string">'./public/index.template.html'</span>,</div><div class="line">            <span class="attr">inject</span>: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line">        <span class="keyword">new</span> webpack.HotModuleReplacementPlugin(),</div><div class="line">    ],</div><div class="line"></div><div class="line">    <span class="attr">devtool</span>: <span class="string">'source-map'</span>,</div><div class="line">    <span class="attr">devServer</span>: &#123;</div><div class="line">        <span class="attr">colors</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">historyApoFailback</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">inLine</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">hot</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">contentBase</span>: <span class="string">'./public'</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="Loader"><a href="#Loader" class="headerlink" title="Loader"></a>Loader</h6><blockquote>
+<p>test: 匹配loaders所处理文件的拓展名的正则表达式<br>loader: loader名<br>include/exclude: 手动添加必须处理或者屏蔽不需要处理的文件<br>query: 为loaders提供额外的设置选项</p>
+</blockquote>
+<h6 id="DevServer"><a href="#DevServer" class="headerlink" title="DevServer"></a>DevServer</h6><blockquote>
+<p>contentBase: 默认webpack-dev-server会为根文件夹提供本地服务器，如果想为另外一个目录下的文件提供本地服务器，应该在这里设置其所在目录（本例设置到“public”目录）<br>port: 设置默认监听端口，如果省略，默认为”8080“<br>inline: 设置为true，当源文件改变时会自动刷新页面<br>colors: 设置为true，使终端输出的文件为彩色的<br>historyApiFallback: 在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html</p>
+</blockquote>
+<h3 id="Plugin"><a href="#Plugin" class="headerlink" title="Plugin"></a>Plugin</h3><h6 id="PostCSS-autoprefixer"><a href="#PostCSS-autoprefixer" class="headerlink" title="PostCSS + autoprefixer"></a>PostCSS + autoprefixer</h6> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>: &#123;</div><div class="line">    <span class="attr">loaders</span>: [&#123; <span class="attr">test</span>: <span class="regexp">/\.css$/</span>, <span class="attr">loader</span>: <span class="string">'style!css?modules!postcss'</span> &#125;]</div><div class="line">&#125;,</div><div class="line"><span class="attr">postcss</span>: [</div><div class="line">    <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>)<span class="comment">//调用autoprefixer插件</span></div><div class="line">],</div></pre></td></tr></table></figure>
+<h6 id="webpack-BannerPlugin"><a href="#webpack-BannerPlugin" class="headerlink" title="webpack.BannerPlugin"></a>webpack.BannerPlugin</h6><blockquote>
+<p>版权声明插件</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> webpack.BannerPlugin(<span class="string">"Copyright Flying Unicorns inc."</span>)<span class="comment">//在这个数组中new一个就可以了</span></div></pre></td></tr></table></figure>
+<h6 id="HtmlWebpackPlugin"><a href="#HtmlWebpackPlugin" class="headerlink" title="HtmlWebpackPlugin"></a>HtmlWebpackPlugin</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">    <span class="attr">template</span>: __dirname + <span class="string">"/app/index.tmpl.html"</span><span class="comment">//new 一个这个插件的实例，并传入相关的参数</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h6 id="Hot-Module-Replacement"><a href="#Hot-Module-Replacement" class="headerlink" title="Hot Module Replacement"></a>Hot Module Replacement</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> webpack.HotModuleReplacementPlugin()<span class="comment">//热加载插件</span></div><div class="line">devServer: &#123;</div><div class="line">    <span class="attr">colors</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">historyApiFallback</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">inline</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">hot</span>: <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="OccurenceOrderPlugin"><a href="#OccurenceOrderPlugin" class="headerlink" title="OccurenceOrderPlugin"></a>OccurenceOrderPlugin</h6><blockquote>
+<p>为组件分配ID，通过这个插件webpack可以分析和优先考虑使用最多的模块，并为它们分配最小的ID</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> webpack.optimize.OccurenceOrderPlugin()</div></pre></td></tr></table></figure>
+<h6 id="UglifyJsPlugin"><a href="#UglifyJsPlugin" class="headerlink" title="UglifyJsPlugin"></a>UglifyJsPlugin</h6><blockquote>
+<p>压缩JS代码</p>
+</blockquote>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> webpack.optimize.UglifyJsPlugin()</div></pre></td></tr></table></figure>
+<h6 id="ExtractTextPlugin"><a href="#ExtractTextPlugin" class="headerlink" title="ExtractTextPlugin"></a>ExtractTextPlugin</h6><blockquote>
+<p>分离CSS和JS文件</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> ExtractTextPlugin(<span class="string">"style.css"</span>)</div></pre></td></tr></table></figure>
+<h3 id="Caching"><a href="#Caching" class="headerlink" title="Caching"></a>Caching</h3><blockquote>
+<p>缓存无处不在，使用缓存的最好方法是保证你的文件名和文件内容是匹配的（内容改变，名称相应改变）</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">output: &#123;</div><div class="line">   <span class="attr">path</span>: __dirname + <span class="string">"/build"</span>,</div><div class="line">   <span class="attr">filename</span>: <span class="string">"[name]-[hash].js"</span></div><div class="line">&#125;,</div><div class="line"><span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> ExtractTextPlugin(<span class="string">"[name]-[hash].css"</span>)</div><div class="line">]</div></pre></td></tr></table></figure>
+<h3 id="Code-Splitting"><a href="#Code-Splitting" class="headerlink" title="Code Splitting"></a>Code Splitting</h3><blockquote>
+<p>It’s an opt-in feature. You can define split points in your code base. Webpack takes care of the dependencies, output files and runtime stuff.</p>
+</blockquote>
+<h6 id="CommonJS-require-ensure"><a href="#CommonJS-require-ensure" class="headerlink" title="CommonJS: require.ensure"></a>CommonJS: require.ensure</h6><blockquote>
+<p>The require.ensure method ensures that every dependency in dependencies can be synchronously required when calling the callback. callback has no parameter.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// require.ensure only loads the modules, it doesn’t evaluate them</span></div><div class="line"><span class="built_in">require</span>.ensure([<span class="string">"module-a"</span>, <span class="string">"module-b"</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">"module-a"</span>);</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h6 id="AMD-require"><a href="#AMD-require" class="headerlink" title="AMD: require"></a>AMD: require</h6><blockquote>
+<p>The AMD spec defines an asynchronous require method with this definition<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>([<span class="string">"module-a"</span>, <span class="string">"module-b"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;);</div><div class="line"><span class="comment">// Note: AMD require loads and evaluate the modules. In webpack modules are evaluated left to right.</span></div><div class="line"><span class="comment">// Note: It’s allowed to omit the callback.</span></div></pre></td></tr></table></figure></p>
+</blockquote>
+<h6 id="ES6-Modules"><a href="#ES6-Modules" class="headerlink" title="ES6 Modules"></a>ES6 Modules</h6><blockquote>
+<p>Webpack doesn’t support ES6 modules; use require.ensure or require directly depending on which module format your transpiler creates.<br>Luckily, there is a JavaScript API “loader” specification being written to handle the dynamic use case: System.load (or System.import). This API will be the native equivalent to the above require variations. However, most transpilers do not support converting System.load calls to require.ensure so you have to do that directly if you want to make use of dynamic code splitting.</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//static imports</span></div><div class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></div><div class="line"></div><div class="line"><span class="comment">// dynamic imports</span></div><div class="line"><span class="built_in">require</span>.ensure([], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> contacts = <span class="built_in">require</span>(<span class="string">'./contacts'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h6 id="Chunk-content"><a href="#Chunk-content" class="headerlink" title="Chunk content"></a>Chunk content</h6><blockquote>
+<p>All dependencies at a split point go into a new chunk. Dependencies are also recursively added.<br>If you pass a function expression (or bound function expression) as callback to the split point, webpack automatically puts all dependencies required in this function expression into the chunk too.</p>
+</blockquote>
+<h6 id="Chunk-optimization"><a href="#Chunk-optimization" class="headerlink" title="Chunk optimization"></a>Chunk optimization</h6><blockquote>
+<p>If two chunks contain the same modules, they are merged into one. This can cause chunks to have multiple parents.<br>If a module is available in all parents of a chunk, it’s removed from that chunk.<br>If a chunk contains all modules of another chunk, this is stored. It fulfills multiple chunks.</p>
+</blockquote>
+<h6 id="Chunk-loading"><a href="#Chunk-loading" class="headerlink" title="Chunk loading"></a>Chunk loading</h6><blockquote>
+<p>Depending on the configuration option target a runtime logic for chunk loading is added to the bundle. I. e. for the web target chunks are loaded via jsonp. A chunk is only loaded once and parallel requests are merged into one. The runtime checks for loaded chunks whether they fulfill multiple chunks.</p>
+</blockquote>
+<h6 id="Chunk-types"><a href="#Chunk-types" class="headerlink" title="Chunk types"></a>Chunk types</h6><p>######### Entry chunk</p>
+<blockquote>
+<p>An entry chunk contains the runtime plus a bunch of modules. If the chunk contains the module 0 the runtime executes it. If not, it waits for chunks that contains the module 0 and executes it (every time when there is a chunk with a module 0)</p>
+</blockquote>
+<p>######### Normal chunk</p>
+<blockquote>
+<p>A normal chunk contains no runtime. It only contains a bunch of modules. The structure depends on the chunk loading algorithm. I. e. for jsonp the modules are wrapped in a jsonp callback function. The chunk also contains a list of chunk id that it fulfills.</p>
+</blockquote>
+<p>######### Initial chunk (non-entry)</p>
+<blockquote>
+<p>An initial chunk is a normal chunk. The only difference is that optimization treats it as more important because it counts toward the initial loading time (like entry chunks). That chunk type can occur in combination with the CommonsChunkPlugin.</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">"webpack"</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="attr">app</span>: <span class="string">"./app.js"</span>,</div><div class="line">    <span class="attr">vendor</span>: [<span class="string">"jquery"</span>, <span class="string">"underscore"</span>, ...],</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">"bundle.js"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(<span class="comment">/* chunkName= */</span><span class="string">"vendor"</span>, <span class="comment">/* filename= */</span><span class="string">"vendor.bundle.js"</span>)</div><div class="line">  ]</div><div class="line">&#125;;</div><div class="line"><span class="comment">// This will remove all modules in the vendor chunk from the app chunk. The bundle.js will now contain just your app code, without any of its dependencies. These are in vendor.bundle.js.</span></div><div class="line"><span class="comment">// In your HTML page load vendor.bundle.js before bundle.js.</span></div><div class="line">&lt;script src=<span class="string">"vendor.bundle.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"bundle.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">"webpack"</span>);</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: &#123; <span class="attr">a</span>: <span class="string">"./a"</span>, <span class="attr">b</span>: <span class="string">"./b"</span> &#125;,</div><div class="line">  <span class="attr">output</span>: &#123; <span class="attr">filename</span>: <span class="string">"[name].js"</span> &#125;,</div><div class="line">  <span class="attr">plugins</span>: [ <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(<span class="string">"init.js"</span>) ]</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;script src=<span class="string">"init.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"a.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"b.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<h6 id="Optimization"><a href="#Optimization" class="headerlink" title="Optimization"></a>Optimization</h6><pre><code>* LimitChunkCountPlugin
+* MinChunkSizePlugin
+* AggressiveMergingPlugin
+[Config Plugin List](https://webpack.github.io/docs/list-of-plugins.html){:target=&quot;_blank&quot;}
+</code></pre><p><a href="http://www.pro-react.com/materials/appendixA/" target="_blank" rel="external">http://www.pro-react.com/materials/appendixA/</a><br><a href="https://github.com/eyasliu/blog/issues/8" target="_blank" rel="external">https://github.com/eyasliu/blog/issues/8</a><br><a href="http://www.alloyteam.com/2016/02/code-split-by-routes/" target="_blank" rel="external">http://www.alloyteam.com/2016/02/code-split-by-routes/</a><br><a href="http://www.jianshu.com/p/42e11515c10f" target="_blank" rel="external">http://www.jianshu.com/p/42e11515c10f</a></p>
+<p><a href="https://medium.com/@rajaraodv/webpack-the-confusing-parts-58712f8fcad9#.m1an35go2" target="_blank" rel="external">https://medium.com/@rajaraodv/webpack-the-confusing-parts-58712f8fcad9#.m1an35go2</a><br><a href="https://medium.com/@rajaraodv/why-redux-needs-reducers-to-be-pure-functions-d438c58ae468#.xcb5p2yux" target="_blank" rel="external">https://medium.com/@rajaraodv/why-redux-needs-reducers-to-be-pure-functions-d438c58ae468#.xcb5p2yux</a><br><a href="https://medium.com/@rajaraodv/webpacks-hmr-react-hot-loader-the-missing-manual-232336dc0d96#.mxeblxujo" target="_blank" rel="external">https://medium.com/@rajaraodv/webpacks-hmr-react-hot-loader-the-missing-manual-232336dc0d96#.mxeblxujo</a><br><a href="https://medium.com/@rajaraodv/webpack-hot-module-replacement-hmr-e756a726a07#.bsm92y6nd" target="_blank" rel="external">https://medium.com/@rajaraodv/webpack-hot-module-replacement-hmr-e756a726a07#.bsm92y6nd</a><br><a href="https://medium.freecodecamp.com/5-javascript-bad-parts-that-are-fixed-in-es6-c7c45d44fd81#.jtdaohm3n" target="_blank" rel="external">https://medium.freecodecamp.com/5-javascript-bad-parts-that-are-fixed-in-es6-c7c45d44fd81#.jtdaohm3n</a></p>
+<p><a href="https://gold.xitu.io/post/5842ea76128fe10058a3b4f0" target="_blank" rel="external">https://gold.xitu.io/post/5842ea76128fe10058a3b4f0</a></p>
+<p><a href="https://github.com/gwuhaolin/blog/issues/2" target="_blank" rel="external">https://github.com/gwuhaolin/blog/issues/2</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/05/19/flex-layout/" data-toggle="tooltip" data-placement="top" title="Flex 布局">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/05/19/wow-old-or-our-old/" data-toggle="tooltip" data-placement="top" title="魔兽老了还是我们长大了">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#WebPack" title="WebPack">WebPack</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "blog-asherjia-com";
+    var disqus_identifier = "http://blog.asherjia.com/2016/05/19/webpack/";
+    var disqus_url = "http://blog.asherjia.com/2016/05/19/webpack/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Asher&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://blog.asherjia.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://blog.asherjia.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

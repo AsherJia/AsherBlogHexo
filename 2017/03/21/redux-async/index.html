@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Redux Async Function - AsherJia的博客 | AsherJia&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://blog.asherjia.com/2017/03/21/redux-async/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Asher&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/news/">News</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://blog.asherjia.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Redux" title="Redux">Redux</a>
+                        
+                    </div>
+                    <h1>Redux Async Function</h1>
+                    <h2 class="subheading">Async</h2>
+                    <span class="meta">
+                        Posted by Asher on
+                        2017-03-21
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="Redux异步方案选型"><a href="#Redux异步方案选型" class="headerlink" title="Redux异步方案选型"></a>Redux异步方案选型</h1><p>作为react社区最热门的状态管理框架，相信很多人都准备甚至正在使用Redux。</p>
+<p>由于Redux的理念非常精简，没有追求大而全，这份架构上的优雅却在某种程度上伤害了使用体验：不能开箱即用，甚至是异步这种最常见的场景也要借助社区方案。</p>
+<p>如果你已经挑花了眼，或者正在挑但不知道是否适合，或者已经挑了但不知道会不会有坑，这篇文章应该适合你。</p>
+<p>本文会从一些常见的Redux异步方案出发，介绍它们的优缺点，进而讨论一些与异步相伴的常见场景，帮助你在选型时更好地权衡利弊。</p>
+<h2 id="简单方案"><a href="#简单方案" class="headerlink" title="简单方案"></a>简单方案</h2><h3 id="redux-thunk：指路先驱"><a href="#redux-thunk：指路先驱" class="headerlink" title="redux-thunk：指路先驱"></a>redux-thunk：指路先驱</h3><p><a href="https://github.com/gaearon/redux-thunk" target="_blank" rel="external">Github</a></p>
+<blockquote>
+<p>Redux本身只能处理同步的Action，但可以通过中间件来拦截处理其它类型的action，比如函数(Thunk)，再用回调触发普通Action<br>从而实现异步处理，在这点上所有Redux的异步方案都是类似的。</p>
+</blockquote>
+<h3 id="redux-promise：瘦身过头"><a href="#redux-promise：瘦身过头" class="headerlink" title="redux-promise：瘦身过头"></a>redux-promise：瘦身过头</h3><p>由于redux-thunk写起来实在是太麻烦了，社区当然会有其它轮子出现。<a href="https://github.com/pburtchaell/redux-promise-middleware" target="_blank" rel="external">redux-promise</a>则是其中比较知名的，同样也享受了官网出镜的待遇。</p>
+<p>它自定义了一个middleware，当检测到有action的payload属性是Promise对象时，就会:</p>
+<ul>
+<li>若resolve，触发一个此action的拷贝，但payload为promise的value，并设status属性为”success”</li>
+<li>若reject，触发一个此action的拷贝，但payload为promise的reason，并设status属性为”error”</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//action types</span></div><div class="line"><span class="keyword">const</span> GET_DATA = <span class="string">'GET_DATA'</span>;</div><div class="line"></div><div class="line"><span class="comment">//action creator</span></div><div class="line"><span class="keyword">const</span> getData = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">type</span>: GET_DATA,</div><div class="line">        <span class="attr">payload</span>: api.getData(id) <span class="comment">//payload为promise对象</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//reducer</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">oldState, action</span>) </span>&#123;</div><div class="line">    <span class="keyword">switch</span>(action.type) &#123;</div><div class="line">    <span class="keyword">case</span> GET_DATA:</div><div class="line">        <span class="keyword">if</span> (action.status === <span class="string">'success'</span>) &#123;</div><div class="line">            <span class="keyword">return</span> successState</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">               <span class="keyword">return</span> errorState</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>请等等，任何能明显减少代码量的方案，都应该小心它是否过度省略了什么东西，减肥是好事，减到骨头就残了。</p>
+<h4 id="场景解析之：乐观更新"><a href="#场景解析之：乐观更新" class="headerlink" title="场景解析之：乐观更新"></a>场景解析之：乐观更新</h4><p>多数异步场景都是保守更新的，即等到请求成功才渲染数据。而与之相对的乐观更新，则是不等待请求成功，在发送请求的同时立即渲染数据。</p>
+<p>最常见的例子就是微信等聊天工具，发送消息时消息立即进入了对话窗，如果发送失败的话，在消息旁边再作补充提示即可。这种交互”乐观”地相信请求会成功，因此称作乐观更新(Optimistic update)。</p>
+<p>由于乐观更新发生在用户操作时，要处理它，意味着必须有action表示用户的初始动作</p>
+<p>在上面redux-thunk的例子中，我们看到了GET_DATA, GET_DATA_SUCCESS、GET_DATA_FAILED三个action，分别表示初始动作、异步成功和异步失败，其中第一个action使得redux-thunk具备乐观更新的能力。</p>
+<p>而在redux-promise中，最初触发的action被中间件拦截然后过滤掉了。原因很简单，redux认可的action对象是 plain JavaScript objects，即简单对象，而在redux-promise中，初始action的payload是个Promise。</p>
+<p>另一方面，使用status而不是type来区分两个异步action也非常值得商榷，按照redux对action的定义以及社区的普遍实践，个人还是倾向于使用不同的type，用同一type下的不同status区分action额外增加了一套隐形的约定，甚至不符合该redux-promise作者自己所提倡的FSA，体现在代码上则是在switch-case内再增加一层判断。</p>
+<h3 id="redux-promise-middleware：拔乱反正"><a href="#redux-promise-middleware：拔乱反正" class="headerlink" title="redux-promise-middleware：拔乱反正"></a>redux-promise-middleware：拔乱反正</h3><p>redux-promise-middleware相比redux-promise，采取了更为温和和渐进式的思路，保留了和redux-thunk类似的三个action。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//action types</span></div><div class="line"><span class="keyword">const</span> GET_DATA = <span class="string">'GET_DATA'</span>,</div><div class="line">    GET_DATA_PENDING = <span class="string">'GET_DATA_PENDING'</span>,</div><div class="line">    GET_DATA_FULFILLED = <span class="string">'GET_DATA_FULFILLED'</span>,</div><div class="line">    GET_DATA_REJECTED = <span class="string">'GET_DATA_REJECTED'</span>;</div><div class="line"><span class="comment">//action creator</span></div><div class="line"><span class="keyword">const</span> getData = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">type</span>: GET_DATA,</div><div class="line">        <span class="attr">payload</span>: &#123;</div><div class="line">            <span class="attr">promise</span>: api.getData(id),</div><div class="line">            <span class="attr">data</span>: id</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//reducer</span></div><div class="line"><span class="keyword">const</span> reducer = <span class="function"><span class="keyword">function</span>(<span class="params">oldState, action</span>) </span>&#123;</div><div class="line">    <span class="keyword">switch</span>(action.type) &#123;</div><div class="line">    <span class="keyword">case</span> GET_DATA_PENDING :</div><div class="line">        <span class="keyword">return</span> oldState; <span class="comment">// 可通过action.payload.data获取id</span></div><div class="line">    <span class="keyword">case</span> GET_DATA_FULFILLED :</div><div class="line">        <span class="keyword">return</span> successState;</div><div class="line">    <span class="keyword">case</span> GET_DATA_REJECTED :</div><div class="line">        <span class="keyword">return</span> errorState;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果不需要乐观更新，action creator可以使用和redux-promise完全一样的，更简洁的写法，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> getData = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">type</span>: GET_DATA,</div><div class="line">        <span class="attr">payload</span>: api.getData(id) <span class="comment">//等价于 &#123;promise: api.getData(id)&#125;</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此时初始actionGET_DATA_PENDING仍然会触发，但是payload为空。</p>
+<p>相对redux-promise于粗暴地过滤掉整个初始action，redux-promise-middleware选择创建一个只过滤payload中的promise属性的XXX_PENDING作为初始action，以此保留乐观更新的能力。</p>
+<p>同时在action的区分上，它选择了回归type的”正途”，_PENDING、_FULFILLED、_REJECTED等后缀借用了promise规范 (当然它们是可配置的) 。</p>
+<p>它的遗憾则是只在action层实现了简化，对reducer层则束手无策。另外，相比redux-thunk，它还多出了一个_PENDING的字符串模板代码(三个action却需要四个type)。</p>
+<blockquote>
+<p>社区有类似type-to-reducer这样试图简化reducer的库。但由于reducer和异步action通常是两套独立的方案，reducer相关的库无法去猜测异步action的后缀是什么(甚至有没有后缀)，社区也没有相关标准，也就很难对异步做出精简和抽象了。</p>
+</blockquote>
+<h3 id="redux-action-tools：软文预警"><a href="#redux-action-tools：软文预警" class="headerlink" title="redux-action-tools：软文预警"></a>redux-action-tools：软文预警</h3><p>无论是redux-thunk还是redux-promise-middleware，模板代码都是显而易见的，每次写XXX_COMPLETED这样的代码都觉得是在浪费生命——你得先在常量中声明它们，再在action中引用，然后是reducer，假设像redux-thunk一样每个异步action有三个type，三个文件加起来你就得写九次!</p>
+<p>国外开发者也有相同的报怨：</p>
+<p>有没有办法让代码既像redux-promise一样简洁，又能保持乐观更新的能力呢？</p>
+<p>redux-action-tools是我给出的答案：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> GET_DATA = <span class="string">'GET_DATA'</span>;</div><div class="line"></div><div class="line"><span class="comment">//action creator</span></div><div class="line"><span class="keyword">const</span> getData = createAsyncAction(GET_DATA, <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> api.getData(id)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">//reducer</span></div><div class="line"><span class="keyword">const</span> reducer = createReducer()</div><div class="line">    .when(getData, (oldState, action) =&gt; oldState)</div><div class="line">    .done(<span class="function">(<span class="params">oldState, action</span>) =&gt;</span> successState)</div><div class="line">    .failed(<span class="function">(<span class="params">oldState, action</span>) =&gt;</span> errorState)</div><div class="line">    .build()</div></pre></td></tr></table></figure>
+<p>redux-action-tools在action层面做的事情与前面几个库大同小异：同样是派发了三个action：GET_DATA/GET_DATA_SUCCESS/GET_DATA_FAILED。这三个action的描述见下表：</p>
+<p>type When payload meta.asyncPhase ${actionName} 异步开始前 同步调用参数 ‘START’ ${actionName}_COMPLETED 异步成功 value of promise ‘COMPLETED’ ${actionName}_FAILED 异步失败 reason of promise ‘FAILED’<br>createAsyncAction参考了redux-promise作者写的redux-actions ，它接收三个参数，分别是：</p>
+<ul>
+<li>actionName 字符串，所有派生action的名字都以它为基础，初始action则与它同名</li>
+<li>promiseCreator 函数，必须返回一个promise对象</li>
+<li>metaCreator 函数，可选，作用后面会演示到</li>
+</ul>
+<p>目前看来，其实和redux-promise/redux-promise-middleware大同小异。而真正不同的，是它同时简化了reducer层! 这种简化来自于对异步行为从语义角度的抽象：</p>
+<blockquote>
+<p>当(when)初始action发生时处理同步更新，若异步成功(done)则处理成功逻辑，若异步失败(failed)则处理失败逻辑</p>
+</blockquote>
+<p>抽离出when/done/failed三个关键词作为api，并使用链式调用将他们串联起来：when函数接收两个参数：actionName和handler，其中handler是可选的，done和failed则只接收一个handler参数，并且只能在when之后调用——他们分别处理 ${actionName}_SUCCESS 和 ${actionName}_FAILED .</p>
+<p>无论是action还是reducer层，XX_SUCCESS/XX_FAILED相关的代码都被封装了起来，正如在例子中看到的——你甚至不需要声明它们! 创建一个异步action，然后处理它的成功和失败情况，事情本该这么简单。</p>
+<p>更进一步的，这三个action默认都根据当前所处的异步阶段，设置了不同的meta(见上表中的meta.asyncPhase)，它有什么用呢？用场景说话：</p>
+<h4 id="场景解析：失败处理与Loading"><a href="#场景解析：失败处理与Loading" class="headerlink" title="场景解析：失败处理与Loading"></a>场景解析：失败处理与Loading</h4><p>它们是异步不可回避的两个场景，几乎每个项目会遇到。<br>以异步请求的失败处理为例，每个项目通常都有一套比较通用的，适合多数场景的处理逻辑，比如弹窗提示。同时在一些特定场景下，又需要绕过通用逻辑进行单独处理，比如表单的异步校验</p>
+<p>而在实现通用处理逻辑时，常见的问题有以下几种：</p>
+<ul>
+<li>底层处理，扩展性不足</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fetchWrapper</span>(<span class="params">args</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> fetch.apply(fetch, args)</div><div class="line">        .catch(commonErrorHandler)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在较底层封装ajax库可以轻松实现全局处理，但问题也非常明显：</p>
+<p>一是扩展性不足，比如少数场景想要绕过通用处理逻辑，还有一些场景错误是前端生成而非直接来自于请求；<br>二是不易组合，比如有的场景一个action需要多个异步请求，但异常处理和loading是不需要重复的，因为用户不需要知道一个动作有多少个请求。</p>
+<ul>
+<li>不够内聚，侵入业务代码</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//action creator</span></div><div class="line"><span class="keyword">const</span> getData = createAsyncAction(GET_DATA, <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> api.getData(id)</div><div class="line">        .catch(commonErrorHandler) <span class="comment">//调用错误处理函数</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>在有业务意义的action层调用通用处理逻辑，既能按需调用，又不妨碍异步请求的组合。但由于通用处理往往适用于多数场景，这样写会导致业务代码变得冗余，因为几乎每个action都得这么写。</p>
+<ul>
+<li>高耦合，高风险</li>
+</ul>
+<p>也有人把上面的方案做个依赖反转，改为在通用逻辑里监听业务action：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">commonErrorReducer</span>(<span class="params">oldState, action</span>) </span>&#123;</div><div class="line">    <span class="keyword">switch</span>(action.type) &#123;</div><div class="line">    <span class="keyword">case</span> GET_DATA_FAILED:</div><div class="line">    <span class="keyword">case</span> PUT_DATA_FAILED:</div><div class="line">    <span class="comment">//... tons of action type</span></div><div class="line">        <span class="keyword">return</span> commonErrorHandler(action)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样做的本质是把冗余从业务代码中拿出来集中管理。</p>
+<p>问题在于每添加一个请求，都需要修改公共代码，把对应的action type加进来。且不说并行开发时merge冲突，如果加了一个异步action，但忘了往公共处理文件中添加——这是很可能会发生的——而异常是分支流程不容易被测试发现，等到发现，很可能就是事故而不是bug了。</p>
+<p>通过以上几种常见方案的分析，我认为比较完善的错误处理(Loading同理)需要具备如下特点：</p>
+<ul>
+<li>面向异步动作(action)，而非直接面向请求</li>
+<li>不侵入业务代码</li>
+<li>默认使用通用处理逻辑，无需额外代码</li>
+<li>可以绕过通用逻辑</li>
+</ul>
+<p>而借助redux-action-tools提供的meta.asyncPhase，可以轻易用middleware实现以上全部需求!</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></div><div class="line"><span class="keyword">import</span> &#123; ASYNC_PHASES &#125; <span class="keyword">from</span> <span class="string">'redux-action-tools'</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">errorMiddleWare</span>(<span class="params">&#123;dispatch&#125;</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="params">next</span> =&gt;</span> action =&gt; &#123;</div><div class="line">    <span class="keyword">const</span> asyncStep = _.get(action, <span class="string">'meta.asyncStep'</span>);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (asyncStep === ASYNC_PHASES.FAILED) &#123;</div><div class="line">      dispatch(&#123;</div><div class="line">        <span class="attr">type</span>: <span class="string">'COMMON_ERROR'</span>,</div><div class="line">        <span class="attr">payload</span>: &#123;</div><div class="line">          action</div><div class="line">        &#125;</div><div class="line">      &#125;)</div><div class="line">    &#125;</div><div class="line">    next(action);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上中间件一旦检测到meta.asyncStep字段为FAILED的action便触发新的action去调用通用处理逻辑。面向action、不侵入业务、默认工作 (只要是用createAsyncAction声明的异步) ! 轻松实现了理想需求中的前三点，那如何定制呢？既然拦截是面向meta的，只要在创建action时支持对meta的自定义就行了，而createAsyncAction的第三个参数就是为此准备的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></div><div class="line"><span class="keyword">import</span> &#123; ASYNC_PHASES &#125; <span class="keyword">from</span> <span class="string">'redux-action-tools'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> customizedAction = createAsyncAction(</div><div class="line">  type,</div><div class="line">  promiseCreator, <span class="comment">//type 和 promiseCreator此处无不同故省略</span></div><div class="line">  (payload, defaultMeta) =&gt; &#123;</div><div class="line">    <span class="keyword">return</span> &#123; ...defaultMeta, <span class="attr">omitError</span>: <span class="literal">true</span> &#125;; <span class="comment">//向meta中添加配置参数</span></div><div class="line">  &#125;</div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">errorMiddleWare</span>(<span class="params">&#123;dispatch&#125;</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="params">next</span> =&gt;</span> action =&gt; &#123;</div><div class="line">    <span class="keyword">const</span> asyncStep = _.get(action, <span class="string">'meta.asyncStep'</span>);</div><div class="line">    <span class="keyword">const</span> omitError = _.get(action, <span class="string">'meta.omitError'</span>); <span class="comment">//获取配置参数</span></div><div class="line"></div><div class="line">    <span class="keyword">if</span> (!omitError &amp;&amp; asyncStep === ASYNC_PHASES.FAILED) &#123;</div><div class="line">      dispatch(&#123;</div><div class="line">        <span class="attr">type</span>: <span class="string">'COMMON_ERROR'</span>,</div><div class="line">        <span class="attr">payload</span>: &#123;</div><div class="line">          action</div><div class="line">        &#125;</div><div class="line">      &#125;)</div><div class="line">    &#125;</div><div class="line">    next(action);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>类似的，你可以想想如何处理Loading，需要强调的是建议尽量用增量配置的方式进行扩展，而不要轻易删除和修改meta.asyncPhase。<br>比如上例可以通过删除meta.asyncPhase实现同样功能，但如果同时还有其它地方也依赖meta.asyncPhase(比如loadingMiddleware)，就可能导致本意是定制错误处理，却改变了Loading的行为，客观来讲这层风险是基于meta拦截方案的最大缺点，然而相比多数场景的便利、健壮，个人认为特殊场景的风险是可以接受的，毕竟这些场景在整个开发测试流程容易获得更多关注。</p>
+<h2 id="进阶方案"><a href="#进阶方案" class="headerlink" title="进阶方案"></a>进阶方案</h2><p>上面所有的方案，都把异步请求这一动作放在了action creator中，这样做的好处是简单直观，且和Flux社区一脉相承(见下图)。因此个人将它们归为相对简单的一类。</p>
+<p>下面将要介绍的，是相对复杂一类，它们都采用了与上图不同的思路，去追求更优雅的架构、解决更复杂的问题</p>
+<h3 id="redux-loop：分形-组合"><a href="#redux-loop：分形-组合" class="headerlink" title="redux-loop：分形! 组合!"></a>redux-loop：分形! 组合!</h3><p>众所周知，Redux是借鉴自Elm的，然而在Elm中，异步的处理却并不是在action creator层，而是在reducer(Elm中称update)层：</p>
+<blockquote>
+<p>图片来源于： <a href="https://github.com/jarvisaoieong/redux-architecture" target="_blank" rel="external">jarvisaoieong/redux-architecture</a></p>
+</blockquote>
+<p>这样做的目的是为了实现彻底的可组合性(composable)。在redux中，reducer作为函数是可组合的，action正常情况下作为纯对象也是可组合的，然而一旦涉及异步，当action嵌套组合的时候，中间件就无法正常识别，这个问题让redux作者Dan也发出感叹 There is no easy way to compose Redux applications并且开了一个至今仍然open的issue，对组合、分形与redux的故事，有兴趣的朋友可以观摩以上链接，甚至了解一下Elm，篇幅所限，本文难以尽述。</p>
+<p>而redux-loop，则是在这方面的一个尝试，它更彻底的模仿了Elm的模式：引入Effects的概念并将其置入reducer，官方示例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; Effects, loop &#125; <span class="keyword">from</span> <span class="string">'redux-loop'</span>;</div><div class="line"><span class="keyword">import</span> &#123; loadingStart, loadingSuccess, loadingFailure &#125; <span class="keyword">from</span> <span class="string">'./actions'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">fetchDetails</span>(<span class="params">id</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> fetch(<span class="string">`/api/details/<span class="subst">$&#123;id&#125;</span>`</span>)</div><div class="line">    .then(<span class="function">(<span class="params">r</span>) =&gt;</span> r.json())</div><div class="line">    .then(loadingSuccess)</div><div class="line">    .catch(loadingFailure);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">state, action</span>) </span>&#123;</div><div class="line">  <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">    <span class="keyword">case</span> <span class="string">'LOADING_START'</span>:</div><div class="line">      <span class="keyword">return</span> loop(</div><div class="line">        &#123; ...state, <span class="attr">loading</span>: <span class="literal">true</span> &#125;,</div><div class="line">        Effects.promise(fetchDetails, action.payload.id)</div><div class="line">      ); <span class="comment">// 同时返回状态与副作用</span></div><div class="line"></div><div class="line">    <span class="keyword">case</span> <span class="string">'LOADING_SUCCESS'</span>:</div><div class="line">      <span class="keyword">return</span> &#123;</div><div class="line">        ...state,</div><div class="line">        <span class="attr">loading</span>: <span class="literal">false</span>,</div><div class="line">        <span class="attr">details</span>: action.payload</div><div class="line">      &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">case</span> <span class="string">'LOADING_FAILURE'</span>:</div><div class="line">      <span class="keyword">return</span> &#123;</div><div class="line">        ...state,</div><div class="line">        <span class="attr">loading</span>: <span class="literal">false</span>,</div><div class="line">        <span class="attr">error</span>: action.payload.message</div><div class="line">      &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      <span class="keyword">return</span> state;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意在reducer中，当处理LOADING_START时，并没有直接返回state对象，而是用loop函数将state和Effect”打包”返回(实际上这个返回值是数组[State, Effect]，和Elm的方式非常接近)。</p>
+<p>然而修改reducer的返回类型显然是比较暴力的做法，除非Redux官方出面，否则很难获得社区的广泛认同。更复杂的返回类型会让很多已有的API，三方库面临危险，甚至combineReducer都需要用redux-loop提供的定制版本，这种”破坏性”也是Redux作者Dan没有采纳redux-loop进入Redux核心代码的原因：”If a solution doesn’t work with vanilla combineReducers(), it won’t get into Redux core”。</p>
+<p>对Elm的分形架构有了解，想在Redux上继续实践的人来说，redux-loop是很好的参考素材，但对多数人和项目而言，最好还是更谨慎地看待</p>
+<h3 id="redux-saga：难、而美"><a href="#redux-saga：难、而美" class="headerlink" title="redux-saga：难、而美"></a>redux-saga：难、而美</h3><p><a href="https://github.com/redux-saga/redux-saga" target="_blank" rel="external">Redux-saga</a></p>
+<p>另一个著名的库，它让异步行为成为架构中独立的一层(称为saga)，既不在action creator中，也不和reducer沾边。</p>
+<p>它的出发点是把副作用 (Side effect，异步行为就是典型的副作用) 看成”线程”，可以通过普通的action去触发它，当副作用完成时也会触发action作为输出。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; takeEvery &#125; <span class="keyword">from</span> <span class="string">'redux-saga'</span></div><div class="line"><span class="keyword">import</span> &#123; call, put &#125; <span class="keyword">from</span> <span class="string">'redux-saga/effects'</span></div><div class="line"><span class="keyword">import</span> Api <span class="keyword">from</span> <span class="string">'...'</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">getData</span>(<span class="params">action</span>) </span>&#123;</div><div class="line">   <span class="keyword">try</span> &#123;</div><div class="line">      <span class="keyword">const</span> response = <span class="keyword">yield</span> call(api.getData, action.payload.id);</div><div class="line">      <span class="keyword">yield</span> put(&#123;<span class="attr">type</span>: <span class="string">"GET_DATA_SUCCEEDED"</span>, <span class="attr">payload</span>: response&#125;);</div><div class="line">   &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">      <span class="keyword">yield</span> put(&#123;<span class="attr">type</span>: <span class="string">"GET_DATA_FAILED"</span>, <span class="attr">payload</span>: error&#125;);</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">mySaga</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">yield</span>* takeEvery(<span class="string">"GET_DATA"</span>, getData);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> mySaga;</div></pre></td></tr></table></figure>
+<p>相比action creator的方案，它可以保证组件触发的action是纯对象，因此至少在项目范围内(middleware和saga都是项目的顶层依赖，跨项目无法保证)，action的组合性明显更加优秀。</p>
+<p>而它最为主打的，则是<code>可测试性</code>和强大的<code>异步流程控制</code>。</p>
+<p>由于强制所有saga都必须是generator函数，借助generator的next接口，异步行为的每个中间步骤都被暴露给了开发者，从而实现对异步逻辑”step by step”的测试。这在其它方案中是很少看到的 (当然也可以借鉴generator这一点，但缺少约束)。</p>
+<p>而强大得有点眼花缭乱的API，特别是channel的引入，则提供了武装到牙齿级的异步流程控制能力。</p>
+<p>然而，回顾我们在讨论简单方案时提到的各种场景与问题，redux-saga并没有去尝试回答和解决它们，这意味着你需要自行寻找解决方案。而generator、相对复杂的API和单独的一层抽象也让不少人望而却步。</p>
+<p>包括我在内，很多人非常欣赏redux-saga。它的架构和思路毫无疑问是优秀甚至优雅的，但使用它之前，最好想清楚它带来的优点(可测试性、流程控制、高度解耦)与付出的成本是否匹配，特别是异步方面复杂度并不高的项目，比如多数以CRUD为主的管理系统。</p>
+<h4 id="场景解析：竞态"><a href="#场景解析：竞态" class="headerlink" title="场景解析：竞态"></a>场景解析：竞态</h4><p>竞态：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fetchFriend</span>(<span class="params">id</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="params">dispatch</span> =&gt;</span> &#123;</div><div class="line">        dispatch(&#123; <span class="attr">type</span>: <span class="string">'FETCH_FRIEND'</span> &#125;);</div><div class="line">        <span class="keyword">return</span> fetch(<span class="string">`http://localhost/api/friend/<span class="subst">$&#123;id&#125;</span>`</span>)</div><div class="line">            .then(<span class="function"><span class="params">response</span> =&gt;</span> response.json())</div><div class="line">            .then(<span class="function"><span class="params">json</span> =&gt;</span> dispatch(&#123; <span class="attr">type</span>: <span class="string">'RECEIVE_FRIENDS'</span>, <span class="attr">payload</span>: json &#125;));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果 fetch 修改为 buttonclick，setTimeout 这样的开始可以确定顺序的，<br>但是 fetch 是和服务器沟通的，服务器处理数据返回顺序是不确定<br>那么怎么处理？</p>
+<p>冲突流程如下：<br> 点击看好友1信息<br> 服务器请求<br> 没等1返回， 看好友2信息 (我就想看这个)<br> 好友2服务器请求返回比较快(可能在cache中)<br> 显示好友2信息了<br> 等了一会儿1返回了<br> 覆盖了2   (BOOM!)</p>
+<p>由于异步返回时间的不确定性，后发出的请求可能先返回，如何确保异步结果的渲染是按照请求发生顺序，而不是返回顺序？</p>
+<p>这在redux-thunk为代表的简单方案中是要费点功夫的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fetchFriend</span>(<span class="params">id</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">dispatch, getState</span>) =&gt;</span> &#123;</div><div class="line">        <span class="comment">//步骤1：在reducer中 set state.currentFriend = id;</span></div><div class="line">        dispatch(&#123;<span class="attr">type</span>: <span class="string">'FETCH_FIREND'</span>, <span class="attr">payload</span>: id&#125;);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> fetch(<span class="string">`http://localhost/api/firend/<span class="subst">$&#123;id&#125;</span>`</span>)</div><div class="line">            .then(<span class="function"><span class="params">response</span> =&gt;</span> response.json())</div><div class="line">            .then(<span class="function"><span class="params">json</span> =&gt;</span> &#123;</div><div class="line">                <span class="comment">//步骤2：只处理currentFriend的对应response</span></div><div class="line">                <span class="keyword">const</span> &#123; currentFriend &#125; = getState();</div><div class="line">                (currentFriend === id) &amp;&amp; dispatch(&#123;<span class="attr">type</span>: <span class="string">'RECEIVE_FIRENDS'</span>, <span class="attr">playload</span>: json&#125;)</div><div class="line">            &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上只是示例，实际中不一定需要依赖业务id，也不一定要把id存到store里，只要为每个请求生成key，以便处理请求时能够对应起来即可。</p>
+<p>而在redux-saga中，一切非常地简单：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; takeLatest &#125; <span class="keyword">from</span> <span class="string">`redux-saga`</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">fetchFriend</span>(<span class="params">action</span>) </span>&#123;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">watchLastFetchUser</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">yield</span> takeLatest(<span class="string">'FETCH_FIREND'</span>, fetchFriend)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里的重点是takeLatest，它限制了同步事件与异步返回事件的顺序关系。</p>
+<p>另外还有一些基于响应式编程(Reactive Programming)的异步方案(如redux-observable)也能非常好地处理竞态场景，因为描述事件流之间的关系，正是整个响应式编程的抽象基石，而竞态在本质上就是如何保证同步事件与异步返回事件的关系，正是响应式编程的用武之地。</p>
+<blockquote>
+<p>实际项目中可以用高阶函数模仿takeLatest的功能，redux-thunk类方案也可以较低成本地处理竞态</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">takeLatestAsyncResult</span>(<span class="params">promiseCreator</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> index = <span class="number">0</span>;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    index++;</div><div class="line">    <span class="keyword">var</span> promise = promiseCreator.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">guardLatest</span>(<span class="params">func, reqIndex</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (reqIndex === index) &#123;</div><div class="line">          func.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>)</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">      promise.then(</div><div class="line">        guardLatest(resolve, index),</div><div class="line">        guardLatest(reject, index)</div><div class="line">      );</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">runTimeout</span>(<span class="params">timeout</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">			resolve(timeout);</div><div class="line">    &#125;, timeout)</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAsyncTaskRunner</span>(<span class="params">label, promiseCreator</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">    promiseCreator(value).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;label&#125;</span> : <span class="subst">$&#123;value&#125;</span>`</span>)</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">runAsyncQue</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">  arr.map(getAsyncTaskRunner(<span class="string">'runAsyncQue'</span>, runTimeout));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">runLatestAsync</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> wrappedTimeout = takeLatestAsyncResult(runTimeout);</div><div class="line">  arr.map(getAsyncTaskRunner(<span class="string">'runLatestAsync'</span>, wrappedTimeout));</div><div class="line">&#125;</div><div class="line"></div><div class="line">runAsyncQue([<span class="number">2000</span>, <span class="number">1000</span>, <span class="number">3000</span>, <span class="number">500</span>, <span class="number">400</span>])</div><div class="line"></div><div class="line">runLatestAsync([<span class="number">2000</span>, <span class="number">1000</span>, <span class="number">3000</span>, <span class="number">500</span>, <span class="number">400</span>])</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">takeLatestAsyncResult</span>(<span class="params">promiseCreator</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> index = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        index++;</div><div class="line"></div><div class="line">        <span class="keyword">const</span> promise = promiseCreator.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">guardLatest</span>(<span class="params">func, reqIndex</span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="keyword">if</span> (reqIndex === index) &#123;</div><div class="line">                    func.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>)</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</div><div class="line">            promise.then(</div><div class="line">                guardLatest(resolve, index),</div><div class="line">                guardLatest(reject, index)</div><div class="line">            )</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/03/21/gulp-and-webpack/" data-toggle="tooltip" data-placement="top" title="Gulp and Markdown">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/03/21/frontend-interview-question/" data-toggle="tooltip" data-placement="top" title="Frontend Interview Question">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Redux" title="Redux">Redux</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "blog-asherjia-com";
+    var disqus_identifier = "http://blog.asherjia.com/2017/03/21/redux-async/";
+    var disqus_url = "http://blog.asherjia.com/2017/03/21/redux-async/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Asher&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://blog.asherjia.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://blog.asherjia.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
