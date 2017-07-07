@@ -98,9 +98,9 @@ function* fetchUser(action){
         yield put({type:'fetch_user_ing'})
         const response = yield call(axios.get,'/api/users/1')
         yield put({type:'fetch_user_done',user:response.data})
-  } catch (error) {
+    } catch (error) {
         yield put({type:'fetch_user_error',error})
-  }
+    }
 }
 ```
 

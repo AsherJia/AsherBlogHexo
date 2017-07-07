@@ -14,7 +14,6 @@ tags:
 # Lazy Man
 
 ```javascript
-
 function _LazyMan(name){
     this.task = [];
     var self = this;
@@ -69,63 +68,60 @@ function LazyMan(name){
 }
 
 LazyMan('Hank').sleep(1).eat('sss')
-
 ```
 
 # Functional add
 
 ```javascript
-
 var puls = (num) => {
-	var adder = function() {
-		var _args = []
-		var _adder = function _adder() {
-			[].push.apply(_args, [].slice.call(arguments))
+    var adder = function() {
+        var _args = []
+        var _adder = function _adder() {
+            [].push.apply(_args, [].slice.call(arguments))
 
-			return _adder
-		}
+            return _adder
+        }
 
-		_adder.toString = function() {
-			return _args.reduce(function(a, b) {
-				return a + b
-			})
-		}
+        _adder.toString = function() {
+            return _args.reduce(function(a, b) {
+                return a + b
+            })
+        }
 
-		return _adder
-	}
+        return _adder
+    }
 
-	return adder()(num)
+    return adder()(num)
 }
 
 puls(1)(2)
 
 var add = (...outArguments) => {
-	console.log('arguments1 ', outArguments)
-	let _args = [].slice.call(outArguments)
+    console.log('arguments1 ', outArguments)
+    let _args = [].slice.call(outArguments)
 
-	const adder = () => {
-		const _adder = (..._innerArugments) => {
-			console.log('arguments 3 ', _innerArugments);
+    const adder = () => {
+        const _adder = (..._innerArugments) => {
+            console.log('arguments 3 ', _innerArugments);
 
-			[].push.apply(_args, [].slice.call(_innerArugments))
-			return _adder
-		}
+            [].push.apply(_args, [].slice.call(_innerArugments))
+            return _adder
+        }
 
-		_adder.toString = () => {
-			console.log('ToString ', _args)
-			return _args.reduce((a, b) => {
-				return a + b
-			})
-		}
+        _adder.toString = () => {
+            console.log('ToString ', _args)
+            return _args.reduce((a, b) => {
+                return a + b
+            })
+        }
 
-		return _adder
-	}
+        return _adder
+    }
 
-	return adder.apply(null, [].slice.call(outArguments))
+    return adder.apply(null, [].slice.call(outArguments))
 }
 
 add(1)(2)(3)(4)
-
 ```
 
 # 运算符优先级
@@ -133,7 +129,6 @@ add(1)(2)(3)(4)
 [Mozilla](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)
 
 ```javascript
-
 function Foo() {
     getName = function () {
         console.log('1');
@@ -163,7 +158,6 @@ new Foo.getName() => new (Foo.getName()) => 2
 new Foo().getName() => (new Foo()).getName() => new Foo()
 
 new new Foo().getName() => new ((new Foo()).getName)()
-
 ```
 
 # This绑定类型

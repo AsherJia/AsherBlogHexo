@@ -539,6 +539,7 @@ pre code {
   font-size: 13px;
   font-style: italic;
   color: #a3a3a3;
+  overflow: hidden;
 }
 .post-content-preview:hover {
   color: #0085a1;
