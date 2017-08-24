@@ -191,16 +191,15 @@
 
 <div class="post-preview">
 
-    <a href="/2016/07/04/frontend-module-definition/">
+    <a href="/2016/07/04/we-have-a-problem-with-promise/">
         <h2 class="post-title">
-            AMD CDM COMMONJS
+            We have a problem with promise
         </h2>
         <h3 class="post-subtitle">
-            前端模块化
+            Promise
         </h3>
         <div class="post-content-preview">
-            CMDCMD推崇依赖就近，可以把依赖写进你的代码中的任意一行。123456define(function(require, exports, module) &#123;    var a = require('./a');    a.doSomething();    var b = require('./b');    b.doSomething();&#125;)；
-AMDAMD是依赖......
+            下面四种Promise的区别1234567891011doSomething().then(() =&gt; &#123;    return doSomethingElse()&#125;)doSomething().then(() =&gt; &#123;    doSomethingElse()&#125;)doSomething().then(doSomethingElse())do......
         </div>
     </a>
     <p class="post-meta">
@@ -213,15 +212,16 @@ AMDAMD是依赖......
 
 <div class="post-preview">
 
-    <a href="/2016/07/04/we-have-a-problem-with-promise/">
+    <a href="/2016/07/04/frontend-module-definition/">
         <h2 class="post-title">
-            We have a problem with promise
+            AMD CDM COMMONJS
         </h2>
         <h3 class="post-subtitle">
-            Promise
+            前端模块化
         </h3>
         <div class="post-content-preview">
-            下面四种Promise的区别1234567891011doSomething().then(() =&gt; &#123;    return doSomethingElse()&#125;)doSomething().then(() =&gt; &#123;    doSomethingElse()&#125;)doSomething().then(doSomethingElse())do......
+            CMDCMD推崇依赖就近，可以把依赖写进你的代码中的任意一行。123456define(function(require, exports, module) &#123;    var a = require('./a');    a.doSomething();    var b = require('./b');    b.doSomething();&#125;)；
+AMDAMD是依赖......
         </div>
     </a>
     <p class="post-meta">
@@ -316,18 +316,15 @@ gulp 是基于 Nodejs 的自动任务运行器，能自动化地完成javascript
 
 <div class="post-preview">
 
-    <a href="/2016/05/19/javascript-source-code/">
+    <a href="/2016/05/19/frontend-summary/">
         <h2 class="post-title">
-            javascript source code
+            Frontend Summary
         </h2>
         <h3 class="post-subtitle">
-            Github
+            Frontend
         </h3>
         <div class="post-content-preview">
-            Object-assign
-Object.assign({‘a’:1, ‘b’:2}, {‘c’:3})Object.assign({}, {‘a’:1, ‘b’:2}, {‘c’:3})
-
-123456789101112131415161718192021222324252627282930313233343536373839404142'use strict'// 返回一个布尔值，表明指......
+            LazyMan123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354function _LazyMan(name)&#123;    this.task = [];    var self = this;    var fn = (function(......
         </div>
     </a>
     <p class="post-meta">
@@ -383,6 +380,28 @@ Object.assign({‘a’:1, ‘b’:2}, {‘c’:3})Object.assign({}, {‘a’:1, 
 
 <div class="post-preview">
 
+    <a href="/2016/05/19/reducer-react-app-size/">
+        <h2 class="post-title">
+            Reducer React App's Size In Production
+        </h2>
+        <h3 class="post-subtitle">
+            webpack
+        </h3>
+        <div class="post-content-preview">
+            App{:target=”_block”}
+If you are building a React + Redux App that has Webpack, then you might have noticed that the size of the final bundle.js (the dev version) for a simple app itself could be 1......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Asher on
+        2016-05-19
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2016/05/19/javascript-summary/">
         <h2 class="post-title">
             Javascript Summary
@@ -396,28 +415,6 @@ Object.assign({‘a’:1, ‘b’:2}, {‘c’:3})Object.assign({}, {‘a’:1, 
 语法 javascript Object.defineProperty(objName, propName, descriptor);
 参数
 ob......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Asher on
-        2016-05-19
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/19/reducer-react-app-size/">
-        <h2 class="post-title">
-            Reducer React App's Size In Production
-        </h2>
-        <h3 class="post-subtitle">
-            webpack
-        </h3>
-        <div class="post-content-preview">
-            App{:target=”_block”}
-If you are building a React + Redux App that has Webpack, then you might have noticed that the size of the final bundle.js (the dev version) for a simple app itself could be 1......
         </div>
     </a>
     <p class="post-meta">
