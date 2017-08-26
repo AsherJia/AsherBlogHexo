@@ -191,15 +191,16 @@
 
 <div class="post-preview">
 
-    <a href="/2016/07/04/we-have-a-problem-with-promise/">
+    <a href="/2016/07/04/frontend-module-definition/">
         <h2 class="post-title">
-            We have a problem with promise
+            AMD CDM COMMONJS
         </h2>
         <h3 class="post-subtitle">
-            Promise
+            前端模块化
         </h3>
         <div class="post-content-preview">
-            下面四种Promise的区别1234567891011doSomething().then(() =&gt; &#123;    return doSomethingElse()&#125;)doSomething().then(() =&gt; &#123;    doSomethingElse()&#125;)doSomething().then(doSomethingElse())do......
+            CMDCMD推崇依赖就近，可以把依赖写进你的代码中的任意一行。123456define(function(require, exports, module) &#123;    var a = require('./a');    a.doSomething();    var b = require('./b');    b.doSomething();&#125;)；
+AMDAMD是依赖......
         </div>
     </a>
     <p class="post-meta">
@@ -212,16 +213,15 @@
 
 <div class="post-preview">
 
-    <a href="/2016/07/04/frontend-module-definition/">
+    <a href="/2016/07/04/we-have-a-problem-with-promise/">
         <h2 class="post-title">
-            AMD CDM COMMONJS
+            We have a problem with promise
         </h2>
         <h3 class="post-subtitle">
-            前端模块化
+            Promise
         </h3>
         <div class="post-content-preview">
-            CMDCMD推崇依赖就近，可以把依赖写进你的代码中的任意一行。123456define(function(require, exports, module) &#123;    var a = require('./a');    a.doSomething();    var b = require('./b');    b.doSomething();&#125;)；
-AMDAMD是依赖......
+            下面四种Promise的区别1234567891011doSomething().then(() =&gt; &#123;    return doSomethingElse()&#125;)doSomething().then(() =&gt; &#123;    doSomethingElse()&#125;)doSomething().then(doSomethingElse())do......
         </div>
     </a>
     <p class="post-meta">
@@ -316,15 +316,39 @@ gulp 是基于 Nodejs 的自动任务运行器，能自动化地完成javascript
 
 <div class="post-preview">
 
-    <a href="/2016/05/19/frontend-summary/">
+    <a href="/2016/05/19/javascript-source-code/">
         <h2 class="post-title">
-            Frontend Summary
+            javascript source code
         </h2>
         <h3 class="post-subtitle">
-            Frontend
+            Github
         </h3>
         <div class="post-content-preview">
-            LazyMan123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354function _LazyMan(name)&#123;    this.task = [];    var self = this;    var fn = (function(......
+            Object-assign
+Object.assign({‘a’:1, ‘b’:2}, {‘c’:3})Object.assign({}, {‘a’:1, ‘b’:2}, {‘c’:3})
+
+123456789101112131415161718192021222324252627282930313233343536373839404142'use strict'// 返回一个布尔值，表明指......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Asher on
+        2016-05-19
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/05/19/partial-scroll/">
+        <h2 class="post-title">
+            Partial Scroll
+        </h2>
+        <h3 class="post-subtitle">
+            Github
+        </h3>
+        <div class="post-content-preview">
+            局部滚到1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dt......
         </div>
     </a>
     <p class="post-meta">
@@ -384,40 +408,16 @@ ob......
 
 <div class="post-preview">
 
-    <a href="/2016/05/19/partial-scroll/">
+    <a href="/2016/05/19/reducer-react-app-size/">
         <h2 class="post-title">
-            Partial Scroll
+            Reducer React App's Size In Production
         </h2>
         <h3 class="post-subtitle">
-            Github
+            webpack
         </h3>
         <div class="post-content-preview">
-            局部滚到1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dt......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Asher on
-        2016-05-19
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/19/frontend/">
-        <h2 class="post-title">
-            前端Github收集
-        </h2>
-        <h3 class="post-subtitle">
-            Github
-        </h3>
-        <div class="post-content-preview">
-            http://yaowenjie.github.io/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/using-browser-sync-to-test-in-many-plantforms-synchronously
-慢慢整理
-HTML/CSS
-html5-boilerplate{:target=”_blank”}
-html5demos{:target=”_bl......
+            App{:target=”_block”}
+If you are building a React + Redux App that has Webpack, then you might have noticed that the size of the final bundle.js (the dev version) for a simple app itself could be 1......
         </div>
     </a>
     <p class="post-meta">
