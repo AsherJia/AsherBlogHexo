@@ -447,19 +447,34 @@ If you are building a React + Redux App that has Webpack, then you might have no
 
 <!-- Live2d -->
 
-    <script type="text/javascript" src="/live2d/script.js"></script>
-    <canvas id="live2dcanvas" width="150" height="300" class="live2d"></canvas>
+	<div id="hexo-helper-live2d">
+      <canvas id="live2dcanvas" width="150" height="300" class="live2d"></canvas>
+	</div>
     <style>
       #live2dcanvas {
         position: fixed;
         right: 0px;
         z-index: 999;
         pointer-events: none;
-        bottom: -60px;
+        bottom: -20px;
       }
     </style>
-    <script>loadlive2d("live2dcanvas" ,"/live2d/assets/Epsilon2.1/Epsilon2.1.model.json",0.5)</script>
-  
+    <script src="live2d/device.min.js"></script>
+    <script type="text/javascript">
+    (function(){
+      
+    if(device.mobile()){
+      document.getElementById("live2dcanvas").width = 75;
+      document.getElementById("live2dcanvas").height = 150;
+      document.write('<script type="text/javascript" src="/live2d/script.js"><\/script>');
+      document.write('<script>loadlive2d("live2dcanvas", "/live2d/assets/Epsilon2.1.model.json", 0.5)<\/script>');
+    }else{
+      document.write('<script type="text/javascript" src="/live2d/script.js"><\/script>');
+      document.write('<script>loadlive2d("live2dcanvas", "/live2d/assets/Epsilon2.1.model.json", 0.5)<\/script>');
+    }
+    })();
+    </script>
+
 
                 <!-- 如果开启评论功能 -->
                 
