@@ -415,15 +415,20 @@ Everything is a module — Just like JS files can be “modules”, everythi
     <script src="/live2d/device.min.js"></script>
     <script type="text/javascript">
     (function(){
-    if(device.mobile()){
-      document.getElementById("live2dcanvas").style.width = '75px';
-      document.getElementById("live2dcanvas").style.height = '150px';
-      document.write('<script type="text/javascript" src="/live2d/script.js"><\/script>');
-      document.write('<script>loadlive2d("live2dcanvas", "/live2d/assets/Epsilon2.1.model.json", 0.5)<\/script>');
-    }else{
-      document.write('<script type="text/javascript" src="/live2d/script.js"><\/script>');
-      document.write('<script>loadlive2d("live2dcanvas", "/live2d/assets/Epsilon2.1.model.json", 0.5)<\/script>');
-    }
+	  if(typeof(device) != "undefined"){
+        if(device.mobile()){
+          document.getElementById("live2dcanvas").style.width = '75px';
+          document.getElementById("live2dcanvas").style.height = '150px';
+          document.write('<script type="text/javascript" src="/live2d/script.js"><\/script>');
+          document.write('<script>loadlive2d("live2dcanvas", "/live2d/assets/Epsilon2.1.model.json", 0.5)<\/script>');
+        }else{
+          document.write('<script type="text/javascript" src="/live2d/script.js"><\/script>');
+          document.write('<script>loadlive2d("live2dcanvas", "/live2d/assets/Epsilon2.1.model.json", 0.5)<\/script>');
+        }
+	  }else{
+        document.write('<script type="text/javascript" src="/live2d/script.js"><\/script>');
+        document.write('<script>loadlive2d("live2dcanvas", "/live2d/assets/Epsilon2.1.model.json", 0.5)<\/script>');    
+	  }
     })();
     </script>
 

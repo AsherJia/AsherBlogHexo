@@ -199,12 +199,12 @@
                 post-container">
 
                 <h3 id="为什么搭建Blog"><a href="#为什么搭建Blog" class="headerlink" title="为什么搭建Blog"></a>为什么搭建Blog</h3><blockquote>
-<p>最初的原因是在网上搜索解决方案的时候碰巧看到了一个香港妹子自己的博客<br><a href="http://sabrinaluo.com/tech/" title="我这么可爱一定是男孩子" target="_blank" rel="external">小白妹妹写代码</a>{:target=”_blank”}。<br>风趣幽默的表述让我也有了一个搭建Blog的冲动。<br>所以一切就此开始。。。</p>
+<p>最初的原因是在网上搜索解决方案的时候碰巧看到了一个香港妹子自己的博客<br><a href="http://sabrinaluo.com/tech/" title="我这么可爱一定是男孩子" target="_blank" rel="noopener">小白妹妹写代码</a>{:target=”_blank”}。<br>风趣幽默的表述让我也有了一个搭建Blog的冲动。<br>所以一切就此开始。。。</p>
 </blockquote>
 <h3 id="Jekyll"><a href="#Jekyll" class="headerlink" title="Jekyll"></a>Jekyll</h3><p>Jekyll是一个简单的免费的Blog生成工具，类似WordPress。但是和WordPress又有很大的不同，原因是jekyll只是一个生成静态网页的工具，不需要数据库支持。但是可以配合第三方服务,例如Disqus。最关键的是jekyll可以免费部署在Github上，而且可以绑定自己的域名。</p>
 <p>一个栗子解释安装：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">gem install jekyll <span class="comment">//　安装jekyll</span></span><br><span class="line"></span><br><span class="line">jekyll MyBlog <span class="comment">//　新建一个空的Blog模板</span></span><br><span class="line"></span><br><span class="line">jekyll server <span class="comment">// 根据提示访问站点</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// jekyll server --watch</span></span><br><span class="line"><span class="comment">// jekyll build</span></span><br><span class="line"><span class="comment">// jekyll build --watch</span></span><br><span class="line"><span class="comment">// jekyll clean</span></span><br></pre></td></tr></table></figure>
-<h4 id="Jekyll-themes"><a href="#Jekyll-themes" class="headerlink" title="Jekyll themes"></a>Jekyll themes</h4><p>新建的模板不是很好看但是简介，初学这可以先用来练手。这里有一个模板的网站<a href="http://jekyllthemes.org" title="Jekyll Theme" target="_blank" rel="external">JekyllThemes</a>{:target=”_blank”}。</p>
+<h4 id="Jekyll-themes"><a href="#Jekyll-themes" class="headerlink" title="Jekyll themes"></a>Jekyll themes</h4><p>新建的模板不是很好看但是简介，初学这可以先用来练手。这里有一个模板的网站<a href="http://jekyllthemes.org" title="Jekyll Theme" target="_blank" rel="noopener">JekyllThemes</a>{:target=”_blank”}。</p>
 <blockquote>
 <p>找一个自己喜欢的模板进行改造吧～～～</p>
 </blockquote>
@@ -214,7 +214,7 @@
 <h3 id="Travis-ci"><a href="#Travis-ci" class="headerlink" title="Travis-ci"></a>Travis-ci</h3><blockquote>
 <p>首先我承认自己是一个懒人，我不想每次在发布博文的时候还要进行一次<code>jekyll build</code><br>然后将代码再<code>push</code>到<code>gh-pages</code>上. 虽然过程比较简单, 但是每次都这样也挺烦人的, 所以我就想要一个云端的持续构建工具来帮我完成这个工作。</p>
 </blockquote>
-<p><a href="https://travis-ci.org/" target="_blank" rel="external">Travic-ci</a>{:target=”_blank”} 的用法也很简单。监听<code>master</code>分支, 当有新<code>commit</code>提交的时候就在云端跑脚本。当然这里所谓的跑脚本就是完成我们安排好的流程。</p>
+<p><a href="https://travis-ci.org/" target="_blank" rel="noopener">Travic-ci</a>{:target=”_blank”} 的用法也很简单。监听<code>master</code>分支, 当有新<code>commit</code>提交的时候就在云端跑脚本。当然这里所谓的跑脚本就是完成我们安排好的流程。</p>
 <p>再来一个栗子：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 首先你要新建一个Gemfile文件来告诉travis在执行脚本钱需要安装哪些文件。</span></span><br><span class="line"><span class="comment">// 我的Gemfile文件：</span></span><br><span class="line">source <span class="string">"https://rubygems.org"</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">"jekyll"</span></span><br><span class="line">gem <span class="string">"jekyll-paginate"</span></span><br></pre></td></tr></table></figure>
 <hr>
@@ -222,7 +222,7 @@
 <p>EMAIL以及DEPLOY_KEY是需要用travis来生成的，可以起到保护的作用。<br>这个脚本所完成的就是当有新的commit提交上来以后，执行jekyll build。<br>将生成的_site/下的文件push到gh-pages分支上。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gem install travis</span><br><span class="line"></span><br><span class="line">$ travis encrypt EMAIL=medomain.com --add</span><br><span class="line"></span><br><span class="line">$ travis encrypt DEPLOY_KEY=token --add <span class="comment">//这个token需要到github上生成。</span></span><br></pre></td></tr></table></figure>
 <hr>
-<p>推荐一篇博文<a href="http://nick-dunn.co.uk/blog/jekyll-github-travis-ci-sitting-in-a-tree/" target="_blank" rel="external">Jekyll + Github pages + Travis CI, sitting in a tree</a>{:target=”_blank”}，　我在刚开始的时候就是根据这篇文章来学习的。</p>
+<p>推荐一篇博文<a href="http://nick-dunn.co.uk/blog/jekyll-github-travis-ci-sitting-in-a-tree/" target="_blank" rel="noopener">Jekyll + Github pages + Travis CI, sitting in a tree</a>{:target=”_blank”}，　我在刚开始的时候就是根据这篇文章来学习的。</p>
 <p>结束了，，，能看到这篇文章我相信你已经知道我的博客了。</p>
 <blockquote>
 <p>一个简单的原因，甚至从逻辑上说不通，但是我的博客因此诞生。<br>Later equals never.</p>
