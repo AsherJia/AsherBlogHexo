@@ -128,6 +128,15 @@ add(1)(2)(3)(4)
 
 [Mozilla](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)
 
+|优先级|运算类型|关联性|运算符|
+|-----|-------|-----|-----|
+| 20 | 圆括号 | n/a | (...) |
+| 19 | 成员访问 | 从左到右 | . |
+| 19 | 需计算的成员访问 | 从左到右 | [] |
+| 19 | new(带参数列表) | n/a | new...(...) |
+| 19 | 函数调用 | 从左到右 | ...(...) |
+| 18 | new（无参数列表）| new ... |
+
 ```javascript
 function Foo() {
     getName = function () {
@@ -138,7 +147,7 @@ function Foo() {
 Foo.getName = function () {
     console.log('2');
 };
-Foo.prototype.getName = function () {
+Foo.`prototype`.getName = function () {
     console.log('3');
 };
 var getName = function () {
@@ -155,9 +164,9 @@ getName()  1
 
 new Foo.getName() => new (Foo.getName()) => 2
 
-new Foo().getName() => (new Foo()).getName() => new Foo()
+new Foo().getName() => (new Foo()).getName() => 3
 
-new new Foo().getName() => new ((new Foo()).getName)()
+new new Foo().getName() => new ((new Foo()).getName)() => 3
 ```
 
 # This绑定类型
