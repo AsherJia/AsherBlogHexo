@@ -13,11 +13,11 @@
 
     <title>
         
-          AMD CDM COMMONJS - AsherJia的博客 | AsherJia&#39;s Blog
+          Down The Rabbit Hole: How I Taught Myself To Code &amp; Became An Engineer - AsherJia的博客 | AsherJia&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://blog.asherjia.com/2016/07/04/frontend-module-definition/">
+    <link rel="canonical" href="http://blog.asherjia.com/2016/05/19/down-the-rabbit-hole/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -162,7 +162,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('home-bg.jpg')
+        background-image: url('https://cdn-images-1.medium.com/max/2000/1*eC7zxLin8_Gu6eoVsULvwQ.jpeg')
     }
 </style>
 <header class="intro-header" >
@@ -172,14 +172,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Frontend" title="Frontend">Frontend</a>
+                          <a class="tag" href="/tags/#Medium" title="Medium">Medium</a>
                         
                     </div>
-                    <h1>AMD CDM COMMONJS</h1>
-                    <h2 class="subheading">前端模块化</h2>
+                    <h1>Down The Rabbit Hole: How I Taught Myself To Code &amp; Became An Engineer</h1>
+                    <h2 class="subheading">Medium</h2>
                     <span class="meta">
                         Posted by Asher on
-                        2016-07-04
+                        2016-05-19
                     </span>
                 </div>
             </div>
@@ -198,25 +198,32 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><p>CMD推崇依赖就近，可以把依赖写进你的代码中的任意一行。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>);</div><div class="line">    a.doSomething();</div><div class="line">    <span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">'./b'</span>);</div><div class="line">    b.doSomething();</div><div class="line">&#125;)；</div></pre></td></tr></table></figure></p>
-<h3 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h3><p>AMD是依赖前置的，换句话说，在解析和执行当前模块之前，模块作者必须指明当前模块所依赖的模块。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">define([<span class="string">'./a'</span>,<span class="string">'./b'</span>],<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>) </span>&#123;</div><div class="line">     a.doSomething()</div><div class="line">     b.doSomething()</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<h3 id="COMMONJS"><a href="#COMMONJS" class="headerlink" title="COMMONJS"></a>COMMONJS</h3><p>CommonJS是服务端模块的规范，Node.js采用了这个规范。<br>根据CommonJS规范，一个单独的文件就是一个模块。加载模块使用require方法，该方法读取一个文件并执行，最后返回文件内部的exports对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">"evaluating example.js"</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> invisible = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"invisible"</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.message = <span class="string">"hi"</span>;</div><div class="line"></div><div class="line">exports.say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(message);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> example = <span class="built_in">require</span>(<span class="string">'./example.js'</span>);</div><div class="line"></div><div class="line">&#123;</div><div class="line">    <span class="attr">message</span>: <span class="string">"hi"</span>,</div><div class="line">    <span class="attr">say</span>: [<span class="built_in">Function</span>]</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> example = <span class="built_in">require</span>(<span class="string">'./example'</span>);</div></pre></td></tr></table></figure></p>
-<p>CommonJS 最初只专注于 Server-side 而非浏览器环境，因此它采用了同步加载的机制，这对服务器环境（硬盘 I/O 速度）不是问题，而对浏览器环境（网速）来说并不合适。</p>
-<p>因此，各种适用于浏览器环境的模块框架与标准逐个诞生，他们的共同点是：</p>
-<ul>
-<li>采用异步加载（预先加载所有依赖的模块后回调执行，符合浏览器的网络环境）</li>
-<li>虽然代码风格不同，但其实都可以看作 CommonJS Modules 语法的变体。</li>
-<li>都在向着 COMMON 的方向进化：兼容不同风格，兼容浏览器和服务器两种环境</li>
-</ul>
-<h3 id="AMD规范与CommonJS规范的兼容性"><a href="#AMD规范与CommonJS规范的兼容性" class="headerlink" title="AMD规范与CommonJS规范的兼容性"></a>AMD规范与CommonJS规范的兼容性</h3><p>CommonJS规范加载模块是同步的，也就是说，只有加载完成，才能执行后面的操作。AMD规范则是非同步加载模块，允许指定回调函数。</p>
-<p>由于Node.js主要用于服务器编程，模块文件一般都已经存在于本地硬盘，所以加载起来比较快，不用考虑非同步加载的方式，所以CommonJS规范比较适用。但是，如果是浏览器环境，要从服务器端加载模块，这时就必须采用非同步模式，因此浏览器端一般采用AMD规范。</p>
-<h3 id="UMD"><a href="#UMD" class="headerlink" title="UMD"></a>UMD</h3><p>因为AMD，CommonJS规范是两种不一致的规范，虽然他们应用的场景也不太一致，但是人们仍然是期望有一种统一的规范来支持这两种规范。于是，UMD（Universal Module Definition，称之为通用模块规范）规范诞生了。</p>
-<p>客观来说，这个UMD规范看起来的确没有AMD和CommonJS规范简约。但是它支持AMD和CommonJS规范，同时还支持古老的全局模块模式。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">root, factory</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; define.amd) &#123;</div><div class="line">        <span class="comment">// AMD</span></div><div class="line">        define([<span class="string">'jquery'</span>], factory);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> exports === <span class="string">'object'</span>) &#123;</div><div class="line">        <span class="comment">// Node, CommonJS-like</span></div><div class="line">        <span class="built_in">module</span>.exports = factory(<span class="built_in">require</span>(<span class="string">'jquery'</span>));</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// Browser globals (root is window)</span></div><div class="line">        root.returnExports = factory(root.jQuery);</div><div class="line">    &#125;</div><div class="line">&#125;(<span class="keyword">this</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$</span>) </span>&#123;</div><div class="line">    <span class="comment">//    methods</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">myFunc</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line"></div><div class="line">    <span class="comment">//    exposed public method</span></div><div class="line">    <span class="keyword">return</span> myFunc;</div><div class="line">&#125;));</div></pre></td></tr></table></figure>
-<blockquote>
-<p>人觉得UMD规范更像一个语法糖。应用UMD规范的js文件其实就是一个立即执行函数。函数有两个参数，第一个参数是当前<br>运行时环境，第二个参数是模块的定义体。在执行UMD规范时，会优先判断是当前环境是否支持AMD环境，然后再检验是否支<br>持CommonJS环境，否则认为当前环境为浏览器环境（window）。当然具体的判断顺序其实是可以调换的。</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">root, factory</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> define === <span class="string">'function'</span> &amp;&amp; define.amd) &#123;</div><div class="line">        <span class="comment">// AMD</span></div><div class="line">        define([<span class="string">'jquery'</span>, <span class="string">'underscore'</span>], factory);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> exports === <span class="string">'object'</span>) &#123;</div><div class="line">        <span class="comment">// Node, CommonJS-like</span></div><div class="line">        <span class="built_in">module</span>.exports = factory(<span class="built_in">require</span>(<span class="string">'jquery'</span>), <span class="built_in">require</span>(<span class="string">'underscore'</span>));</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// Browser globals (root is window)</span></div><div class="line">        root.returnExports = factory(root.jQuery, root._);</div><div class="line">    &#125;</div><div class="line">&#125;(<span class="keyword">this</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$, _</span>) </span>&#123;</div><div class="line">    <span class="comment">//    methods</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;;    <span class="comment">//    private because it's not returned (see below)</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;&#125;;    <span class="comment">//    public because it's returned</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>)</span>&#123;&#125;;    <span class="comment">//    public because it's returned</span></div><div class="line"></div><div class="line">    <span class="comment">//    exposed public methods</span></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">b</span>: b,</div><div class="line">        <span class="attr">c</span>: c</div><div class="line">    &#125;</div><div class="line">&#125;));</div></pre></td></tr></table></figure>
+                <p>When people find out I’m a self-taught software engineer, they often say, “I want to do that. How did you teach yourself to program?”</p>
+<p>“你是如何自学编程的，可以教教我吗？”， 当人们发现我是一名自学成才的软件工程师时。</p>
+<p>I can say it all in 5 words. Go down the rabbit hole.</p>
+<p>我用一个谚语来形容：进入兔子洞。</p>
+<p>In Alice In Wonderland, Alice sees something utterly fascinating to her: a rabbit with a watch. She’s so intrigued that she chases after it and goes down a mysterious hole.</p>
+<p>在爱丽丝梦游仙境中，她被一直带着眼镜的兔子彻底吸引了。在好奇心的趋势下，她开始追逐这只兔子，并接跟着他进入了一个神秘的洞穴。</p>
+<p>“She had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it, and, burning with curiosity, she ran after it.”</p>
+<p>“她从来没有见过一只穿着口袋马甲，并且带着眼镜的兔子。这引起了她极大地兴趣并开始跟随它”</p>
+<p>Find what is fascinating to you about programming and chase after it. Go down the rabbit hole.</p>
+<p>在编程方面找到一个吸引你的地方，并且开始深入。 进入兔子洞。</p>
+<p>I never planned on becoming a software engineer. I dropped out of college and I had no idea what I wanted to do with my life. After seeing my big sister code, I got a little curious about it. I decided to forget about what I ‘should’ do with my life or what I was ‘supposed’ to learn. I started coding. I started Googling. I followed my curiosity.</p>
+<p>我从未计划成为一名软件工程师。我大学辍学之后，很迷茫。不知道这辈子该做些什么。在我看到我大姐的代码后，我产生了一些好奇心。我决定抛开想我这辈子应该学什么。我开始编程，开始google。一些都跟随我的好奇心来走。</p>
+<p>Much like when Alice follows after the white rabbit, I had no idea where this path would lead to. I just knew I had to find out.</p>
+<p>就想爱丽丝跟随那只白色的兔子，我不知道这条路会通向哪里。我只知道，我要找到答案。</p>
+<p>My favorite podcast episode — ever — is one in which T.K Coleman and Isaac Morehouse talk about being irresponsibly curious. Their point is that we try to be well-rounded, follow a practical path, and focus on what we’re ‘supposed’ to know. When we do that, we end up half-knowing a bunch of things that don’t inspire us and that we don’t care about. Yet if you want to truly learn, find what you’re curious about and chase after it.</p>
+<p>我最喜欢的广播谈话类节目，”曾经”。 T.K Coleman 和 Isaac Morehouse 谈论不计后果的好奇。他们的专注于如何在各方面全面发展，并且专注于我们应该知道什么。 当我们这样做的时候，对于大多数事情停留在一知半解的情况下，不会吸引我们去继续深究。 所以，如果你想真正的去学习一件事，找到你的兴趣点，并且深究它。</p>
+<p>“The more irresponsibly curious you are about the pursuit of knowledge, the more everything becomes interesting”. -T.K Coleman.<br>People said I should do the responsible thing and go back to college. But I didn’t. I decided to irresponsibly chase my curiosity. I went down the rabbit hole, and I knew some people thought I was crazy. I was a college dropout, I was living with my parents and I was spending all my time coding, something that many believe a woman or a dropout cannot pursue as a career. Yet I didn’t care. I let go of what path I was supposed to be on. Later, I realized I had discovered my biggest passion. I did an unpaid engineering internship and eventually got my first job as a software engineer.</p>
+<p>“当你越渴望的追求知识的时候，你会发现越来越多的事情变得有趣。”. -T.K Coleman.<br>人们说我应当做一些有责任心的事，并且回到学校。但是我没有这样做，我决定义无反顾的去追寻我感兴趣的事。我想深入兔子洞并且我知道大多数人认为我很疯狂。我是一个辍学生，我跟父母生活在一起并且花全部的时间去编程。很多人相信一个女人或者一个辍学生无法从事工作。然而我并不关心。我放弃了自己原本应该走的路。后来，我意识到我发现了自己最发的兴趣。我从一个不计报酬的工程师开始，最终获得了我的第一份软件工程师的工作。</p>
+<p>I didn’t set out to be a software engineer. I chased after my curiosity and one day realized I had become one.</p>
+<p>我一直在追逐自己的好奇心，直到有一天我意识到自己已经成为了一名软件工程师。</p>
+<p>What fascinates you? What is your white rabbit?</p>
+<p>是什么让你着迷？你的白兔子是什么？</p>
+<p>Find out and chase after it. Go down the rabbit hole.</p>
+<p>找到并且追逐他。深入兔子洞。</p>
+<p>It will only be a matter of time before you find yourself in Wonderland.</p>
+<p>发现属于你的仙境只是时间问题。</p>
 
 
                 <hr>
@@ -226,12 +233,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2016/07/04/we-have-a-problem-with-promise/" data-toggle="tooltip" data-placement="top" title="We have a problem with promise">&larr; Previous Post</a>
+                            <a href="/2016/05/19/wow-old-or-our-old/" data-toggle="tooltip" data-placement="top" title="魔兽老了还是我们长大了">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2016/05/23/javascript-note/" data-toggle="tooltip" data-placement="top" title="Javascript">Next Post &rarr;</a>
+                            <a href="/2016/05/19/react-server-render/" data-toggle="tooltip" data-placement="top" title="React Server-Site Render">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -278,7 +285,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Frontend" title="Frontend">Frontend</a>
+                          <a class="tag" href="/tags/#Medium" title="Medium">Medium</a>
                         
                     </div>
                 </section>
@@ -318,8 +325,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "blog-asherjia-com";
-    var disqus_identifier = "http://blog.asherjia.com/2016/07/04/frontend-module-definition/";
-    var disqus_url = "http://blog.asherjia.com/2016/07/04/frontend-module-definition/";
+    var disqus_identifier = "http://blog.asherjia.com/2016/05/19/down-the-rabbit-hole/";
+    var disqus_url = "http://blog.asherjia.com/2016/05/19/down-the-rabbit-hole/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

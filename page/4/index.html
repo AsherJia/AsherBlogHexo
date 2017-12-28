@@ -13,11 +13,11 @@
 
     <title>
         
-          About - AsherJia的博客 | AsherJia&#39;s Blog
+          AsherJia的博客 | AsherJia&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://blog.asherjia.com/about/">
+    <link rel="canonical" href="http://blog.asherjia.com/page/4/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -155,14 +155,14 @@
 
     <!-- Main Content -->
     <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/about-bg.jpg')">
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
                 <div class="site-heading">
-                    <h1>About</h1>
+                    <h1>Asher&#39;s Blog</h1>
                     <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is Kaijun.</span>
+                    <span class="subheading">Things change roll with it</span>
                 </div>
             </div>
         </div>
@@ -186,49 +186,100 @@
                 post-container
             ">
             
-                <blockquote>
-<p>写写代码，做做设计，看看产品。<br>世界那么大，多玩玩看看。</p>
-</blockquote>
-<p style="text-align:right;"><br>    —— <a href="http://www.zhihu.com/question/19687065" target="_blank" rel="noopener">李书航 － 什么是「共产中文腔调」？ </a><br></p>
+                <!-- Main Content -->
+
+
+<div class="post-preview">
+
+    <a href="/2016/05/19/javascript-summary/">
+        <h2 class="post-title">
+            Javascript Summary
+        </h2>
+        <h3 class="post-subtitle">
+            Javascript
+        </h3>
+        <div class="post-content-preview">
+            Object.defineProperty()
+意义与使用场景 &gt; Object.defineProperty可以监听某个对象的属性的设置与取值，并且可以自定义相关函数。 &gt; PS：对象初始化的值会被清空，定义初始值只能在函数内部定义
+语法 javascript Object.defineProperty(objName, propName, descriptor);
+参数
+ob......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Asher on
+        2016-05-19
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/05/19/partial-scroll/">
+        <h2 class="post-title">
+            Partial Scroll
+        </h2>
+        <h3 class="post-subtitle">
+            Github
+        </h3>
+        <div class="post-content-preview">
+            局部滚到1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dt......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Asher on
+        2016-05-19
+    </p>
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/page/3/">&larr; Newer Posts</a>
+        </li>
+    
+    
+</ul>
+
+<!-- Live2d -->
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/Epsilon2.1.model.json", 0.5);});
+})();
+</script>
+
 
                 <!-- 如果开启评论功能 -->
-                
-                    <hr>
-
-                    
-
-                    
-                    <!-- disqus 评论框 start -->
-                    <div class="comment">
-                        <div id="disqus_thread" class="disqus-thread"></div>
-                    </div>
-                    <!-- disqus 评论框 end -->
-                    
-
-
-                    
-
-                    
-                    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-                    <script type="text/javascript">
-                        /* * * CONFIGURATION VARIABLES * * */
-                        var disqus_shortname = "blog-asherjia-com";
-                        var disqus_identifier = "http://blog.asherjia.com/about/index.html";
-                        var disqus_url = "http://blog.asherjia.com/about/index.html";
-
-                        (function() {
-                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                        })();
-
-                        
-                    </script>
-                    <!-- disqus 公共JS代码 end -->
-                    
-
-
-
                 
 
             </div>
