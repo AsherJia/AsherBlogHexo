@@ -169,6 +169,53 @@ new Foo().getName() => (new Foo()).getName() => 3
 new new Foo().getName() => new ((new Foo()).getName)() => 3
 ```
 
+```javascript
+function curry(func) {
+    var l = func.length
+
+    return function curried() {
+        var args = [].slice.call(arguments)
+
+        if (args.length < l) {
+            return function() {
+                var argsInner = [].slice.call(arguments)
+                return curried.apply(this, args.concat(argsInner))
+            }
+        } else {
+            return func.apply(this, args)
+        }
+    }
+}
+
+var f = function(a,b,c) {
+    return console.log([a,b,c])
+}
+
+var curried = curry(f)
+
+curried(1)(2)(3)
+
+function clone (value, isDeep) {
+    if(value === null) return null;
+    if(typeof value !== 'object') return value
+    if (Array.isArray(value)) {
+        if (isDeep) {
+            return value.map(item => clone(item, true))
+        }
+        return [].concat(value)
+    } else {
+        if (isDeep) {
+            var obj = {};
+            Object.keys(value).forEach(item => {
+                obj[item] = clone(value[item], true)
+            })
+            return obj;
+        }
+        return {...value}
+    }
+}
+```
+
 # This绑定类型
 
 * 默认绑定: 就是什么都匹配不到的情况下，非严格模式this绑定到全局对象window或者global

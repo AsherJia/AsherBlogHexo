@@ -249,3 +249,18 @@ var name = 'World!';
 })();
 
 ```
+
+# React
+
+React其实就是三层架构
+
+第一层就是虚拟DOM，用来描绘界面（业务组件虽然不描绘界面，但它最终会返回一个界面或空节点）。即便有一个虚拟DOM在同一个地方用了三次，那么它也会渲染三次，它是根据出现次数来描绘，不是根据引用。
+
+```
+var el = <li>xxx</li>
+ReactDOM.render(<ul>{[el,el,el]}</ul>, contaner)
+```
+
+第二层是渲染调度层，ReactDOM.render与setState后面的东西就是它们。基本上每个虚拟DOM 都对应一个渲染组件，源码称之为_reactInternalInstance。我们的组件实例与元素DOM节点就是放在它们上面。渲染调度层主要是执行业务组件的各种生命周期钩子，合并setState，传递props与context，实现批量更新。React性能卓越的秘决是批量更新，基于列队的异步更新。
+
+第三层才是由底层API创建的渲染对象，在浏览器里面就是DOM节点。
