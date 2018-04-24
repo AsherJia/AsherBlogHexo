@@ -191,21 +191,21 @@
 
 <div class="post-preview">
 
-    <a href="/2016/05/19/flex-layout/">
+    <a href="/2016/07/04/frontend-module-definition/">
         <h2 class="post-title">
-            Flex 布局
+            AMD CDM COMMONJS
         </h2>
         <h3 class="post-subtitle">
-            弹性布局
+            前端模块化
         </h3>
         <div class="post-content-preview">
-            Flex 布局Flex是Flexible Box的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。任何一个容器都可以指定为Flex布局.
-123456789.box &#123;    display: flex;    display: -webkit-flex;&#125;.box &#123;    display: inline-flex;    display: -webk......
+            CMDCMD推崇依赖就近，可以把依赖写进你的代码中的任意一行。123456define(function(require, exports, module) &#123;    var a = require('./a');    a.doSomething();    var b = require('./b');    b.doSomething();&#125;)；
+AMDAMD是依赖......
         </div>
     </a>
     <p class="post-meta">
         Posted by Asher on
-        2016-05-19
+        2016-07-04
     </p>
 
 </div>
@@ -213,66 +213,81 @@
 
 <div class="post-preview">
 
-    <a href="/2016/05/19/javascript-source-code/">
+    <a href="/2016/05/23/redraw-and-rearrangement/">
         <h2 class="post-title">
-            javascript source code
+            Redraw and Rearrangement
+        </h2>
+        <h3 class="post-subtitle">
+            Redraw tab
+        </h3>
+        <div class="post-content-preview">
+            重绘重绘是一个元素外观的改变所触发的浏览器行为，例如改变visibility、outline、背景色等属性。浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。重绘不会带来重新布局，并不一定伴随重排。
+重排重排是更明显的一种改变，可以理解为渲染树需要重新计算。下面是常见的触发重排的操作：
+
+DOM元素的几何属性变化当DOM元素的几何属性变化时，渲染树中的相关节点就会失效，浏览器会根据DOM......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Asher on
+        2016-05-23
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/05/23/javascript-note/">
+        <h2 class="post-title">
+            Javascript
+        </h2>
+        <h3 class="post-subtitle">
+            Javascript
+        </h3>
+        <div class="post-content-preview">
+            数据类型：
+6种原始值（不可变。“除非重置当前变量，否则不能改变元素值。”）
+Null(只有一个值： null)
+Undefined(一个没有被赋值的变量会有个默认值 undefined)
+Number
+Boolean(两个值：true 和 false)
+String
+Symbol
+
+
+和Object(对象指内存中的可以被标识符引用的一块区域)
+
+数据类型检测
+
+typeof(对变量或值调用......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Asher on
+        2016-05-23
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2016/05/20/gulp/">
+        <h2 class="post-title">
+            Gulp
         </h2>
         <h3 class="post-subtitle">
             Github
         </h3>
         <div class="post-content-preview">
-            Object-assign
-Object.assign({‘a’:1, ‘b’:2}, {‘c’:3})Object.assign({}, {‘a’:1, ‘b’:2}, {‘c’:3})
-
-123456789101112131415161718192021222324252627282930313233343536373839404142'use strict'// 返回一个布尔值，表明指......
+            Gulp
+gulp 是基于 Nodejs 的自动任务运行器，能自动化地完成javascript/coffee/sass/less/html/image/css等文件的的测试、检查、合并、压缩、格式化、浏览器自动刷新、部署文件生成，并监听文件在改动后重复指定的这些步骤。在实现上， gulp借鉴了Unix操作系统的管道（pipe）思想，前一级的输出，直接变成后一级的输入，使得在操作上非常简单.
+......
         </div>
     </a>
     <p class="post-meta">
         Posted by Asher on
-        2016-05-19
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/19/understore-analysis/">
-        <h2 class="post-title">
-            Understore
-        </h2>
-        <h3 class="post-subtitle">
-            understore 源码分析
-        </h3>
-        <div class="post-content-preview">
-            ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Asher on
-        2016-05-19
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/05/19/underscore/">
-        <h2 class="post-title">
-            underscore
-        </h2>
-        <h3 class="post-subtitle">
-            Github
-        </h3>
-        <div class="post-content-preview">
-            http://www.css88.com/doc/underscore1.8.2/docs/underscore.html
-Underscore source code12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Asher on
-        2016-05-19
+        2016-05-20
     </p>
 
 </div>
@@ -305,19 +320,16 @@ Vue.js 自身不是一个全能框架——它只聚焦于视图层。因此它�
 
 <div class="post-preview">
 
-    <a href="/2016/05/19/frontend/">
+    <a href="/2016/05/19/flex-layout/">
         <h2 class="post-title">
-            前端Github收集
+            Flex 布局
         </h2>
         <h3 class="post-subtitle">
-            Github
+            弹性布局
         </h3>
         <div class="post-content-preview">
-            http://yaowenjie.github.io/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/using-browser-sync-to-test-in-many-plantforms-synchronously
-慢慢整理
-HTML/CSS
-html5-boilerplate{:target=”_blank”}
-html5demos{:target=”_bl......
+            Flex 布局Flex是Flexible Box的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。任何一个容器都可以指定为Flex布局.
+123456789.box &#123;    display: flex;    display: -webkit-flex;&#125;.box &#123;    display: inline-flex;    display: -webk......
         </div>
     </a>
     <p class="post-meta">
@@ -379,17 +391,19 @@ Everything is a module — Just like JS files can be “modules”, everythi
 
 <div class="post-preview">
 
-    <a href="/2016/05/19/down-the-rabbit-hole/">
+    <a href="/2016/05/19/frontend/">
         <h2 class="post-title">
-            Down The Rabbit Hole: How I Taught Myself To Code & Became An Engineer
+            前端Github收集
         </h2>
         <h3 class="post-subtitle">
-            Medium
+            Github
         </h3>
         <div class="post-content-preview">
-            When people find out I’m a self-taught software engineer, they often say, “I want to do that. How did you teach yourself to program?”
-“你是如何自学编程的，可以教教我吗？”， 当人们发现我是一名自学成才的软件工程师时。
-I can say it all in ......
+            http://yaowenjie.github.io/%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3/using-browser-sync-to-test-in-many-plantforms-synchronously
+慢慢整理
+HTML/CSS
+html5-boilerplate{:target=”_blank”}
+html5demos{:target=”_bl......
         </div>
     </a>
     <p class="post-meta">
@@ -402,16 +416,15 @@ I can say it all in ......
 
 <div class="post-preview">
 
-    <a href="/2016/05/19/react-server-render/">
+    <a href="/2016/05/19/partial-scroll/">
         <h2 class="post-title">
-            React Server-Site Render
+            Partial Scroll
         </h2>
         <h3 class="post-subtitle">
             Github
         </h3>
         <div class="post-content-preview">
-            react-routerreact-router 通过声明式的方式匹配不同的路由决定在页面上展示不同的组件。
-...
+            局部滚到1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dt......
         </div>
     </a>
     <p class="post-meta">
@@ -508,7 +521,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
                             
                         
                             
-                            <a href="/tags/#Javascript" title="Javascript" rel="2">Javascript</a>
+                            <a href="/tags/#Javascript" title="Javascript" rel="3">Javascript</a>
                             
                         
                             
@@ -538,7 +551,11 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
                             
                         
                             
-                            <a href="/tags/#Redux" title="Redux" rel="2">Redux</a>
+                            <a href="/tags/#Redux" title="Redux" rel="3">Redux</a>
+                            
+                        
+                            
+                        
                             
                         
                             
@@ -551,6 +568,12 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
                         
                             
                             <a href="/tags/#Medium" title="Medium" rel="2">Medium</a>
+                            
+                        
+                            
+                        
+                            
+                        
                             
                         
                             

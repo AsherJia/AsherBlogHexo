@@ -221,7 +221,7 @@
 <h2 id="The-primary-ways-to-use-it-are"><a href="#The-primary-ways-to-use-it-are" class="headerlink" title="The primary ways to use it are:"></a>The primary ways to use it are:</h2><p>Change the URL which results in a corresponding action dispatched:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">push(<span class="string">'/users/james-gillmore?foo=bar'</span>)</span><br></pre></td></tr></table></figure>
 <p>Conditionally render something using their “route-matching” component <code>&lt;Fragment /&gt;</code>(same thing as <code>&lt;Route/&gt;</code> in React Router):</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Fragment forRoute=<span class="string">'/home/repos/:slug'</span>&gt;</span><br><span class="line">    &lt;h1&gt;This a code repo!&lt;/h1&gt;</span><br><span class="line">    &lt;ConnectedRepo /&gt;</span><br><span class="line">&lt;<span class="regexp">/Fragment&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Fragment forRoute=<span class="string">'/home/repos/:slug'</span>&gt;</span><br><span class="line">    &lt;h1&gt;This a code repo!<span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">    &lt;ConnectedRepo /&gt;</span><br><span class="line">&lt;<span class="regexp">/Fragment&gt;</span></span><br></pre></td></tr></table></figure>
 <p>Create a real link for SEO:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Link&gt;</span><br><span class="line">    Go ToReact Universal Component</span><br><span class="line">&lt;<span class="regexp">/Link&gt;</span></span><br></pre></td></tr></table></figure>
 <p>You can also nest fragments/routes like in React Router. Here’s an example from their readme:</p>
@@ -244,6 +244,10 @@
                 
 
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/12/13/javascript-eventLoop-task-microtasks/" data-toggle="tooltip" data-placement="top" title="EventLoop Task and Microtasks">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">

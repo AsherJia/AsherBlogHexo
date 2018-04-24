@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          About ReactJs - AsherJia的博客 | AsherJia&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://blog.asherjia.com/2017/03/21/redux-sage-vs-redux-observable/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Asher&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/news/">News</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://blog.asherjia.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#ReactJs" title="ReactJs">ReactJs</a>
+                        
+                    </div>
+                    <h1>About ReactJs</h1>
+                    <h2 class="subheading">ReactJs</h2>
+                    <span class="meta">
+                        Posted by Asher on
+                        2017-03-21
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="Redux-Saga-V-S-Redux-Observable"><a href="#Redux-Saga-V-S-Redux-Observable" class="headerlink" title="Redux-Saga V.S. Redux-Observable"></a>Redux-Saga V.S. Redux-Observable</h1><h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><p>I have used Redux-Saga. Code written with it is easy to reason so far, except JS generator function is messing up my head from time to time. From my understanding, Redux-Observable can achieve the similar job that handles side effects but without using generator function.</p>
+<p>However, docs from Redux-Observable does not provide many opinions of why it is superior against Redux-Saga. I would want to know whether not using generator function is the only benefit of using Redux-Observable. And what could be the downsides, gotcha or compromises from using Redux-Observable instead of Redux-Saga? Thanks in advance.</p>
+<h2 id="Answer"><a href="#Answer" class="headerlink" title="Answer"></a>Answer</h2><p>We don’t currently provide any reason redux-observable is better than redux-saga because…it’s not. 😆</p>
+<p>They solve the same problem in extremely similar ways, but have some fundamental differences that only become truly apparent once you use them enough.</p>
+<p>redux-observable defers nearly everything to idiomatic RxJS. So if you have RxJS knowledge (or gain it), learning and using redux-observable is super super natural. That also means that this knowledge is transferable to things other than redux. If you decide to switch to MobX, if you decide to switch to Angular2, if you decide to switch to some future hotness X, chances are extremely good that RxJS can help you. This is because RxJS is a generic async library, and in many ways is like a programming language in itself. The whole “Reactive Programming” paradigm. RxJS existed since 2012 and started as a port of Rx.NET (there are “ports” in nearly every major language, it’s that useful).</p>
+<p>redux-saga provides it’s time-based operators itself, so while the knowledge you acquire about generators and handling side effects in this process-manager style is transferable, the actual operators and usage is not used in any other major library. So that’s a little unfortunate, but certainly shouldn’t be a deal-breaker by itself.</p>
+<p>It also uses “effects as data” (described here), which might be hard to wrap your head around at first, but it means that your redux-saga code doesn’t actually perform the side effects itself. Instead, the helper functions you use create objects that are like tasks that represent the intent to do the side effect and then the internal library performs it for you. This makes testing extremely easy, without the need for mocking and is very attractive once you get the hang of it.</p>
+<p>People often ask why we don’t do something like that with redux-observable; it’s fundamentally incompatible with Rx. In Rx, we use operators like .debounceTime() that encapsulates the logic required to debounce, but that means if we wanted to make a version of it that doesn’t actually perform the debouncing and instead emits task objects with the intent, you’ve now lost the power of Rx because you can’t just chain operators anymore because they’d be operating on that task object, not the real result of the operation. This is really hard to explain elegantly, it again requires heavy understanding of Rx to understand the incompatibility of approaches.</p>
+<p>As ThorbenA mentioned, I don’t shy away from admitting that redux-saga is currently (10/13/16) the clear leader in complex side effect management for redux. It was started earlier and has a more robust community. So there’s a lot of attraction to using the de facto standard over the new kid on the block. I think it’s safe to say if you use either without prior knowledge, you’re in for some confusion. We both use fairly advanced concepts that once you “get”, makes complex side effect management far easier, but until then many stumble.</p>
+<p>The most important advice I can give is not to bring in either of these libraries before you need them. If you’re only making simple ajax calls, you probably don’t need them. redux-thunk is stupid simple to learn and provides enough for the basics–but the more complex the async the harder (or even impossible) it becomes for redux-thunk. But for redux-observable/saga in many ways it shines the most the more complex the async is. There’s also a lot of merit in using redux-thunk with one of the others (redux-observable/saga) in the same project! redux-thunk for your common simple stuff and then only using redux-observable/saga for complex stuff. That’s a great way to remain productive, so you’re not fighting redux-observable/saga for things that would be trivial with redux-thunk.</p>
+<ul>
+<li>Metal Model</li>
+<li>Side by side Comparison</li>
+<li>Which one do I prefer and Why?</li>
+<li>Futher Reading and Discussion</li>
+</ul>
+<h3 id="Metal-Model"><a href="#Metal-Model" class="headerlink" title="Metal Model"></a>Metal Model</h3><blockquote>
+<p>Saga = Worker + Watcher</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> API <span class="keyword">from</span> <span class="string">'...'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">Watcher</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> takeEvery(<span class="string">'do_thing'</span>, Worker)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">Worker</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> users = <span class="keyword">yield</span> API.get(<span class="string">'/api/users'</span>)</span><br><span class="line">    <span class="keyword">yield</span> put(&#123;<span class="attr">type</span>:<span class="string">'done'</span>, users&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Rxjs = Epic(Type + Operators)</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> API <span class="keyword">from</span> <span class="string">'...'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Epic = <span class="function"><span class="params">action$</span> =&gt;</span></span><br><span class="line">    action$</span><br><span class="line">        .ofType(<span class="string">'do_thing'</span>)</span><br><span class="line">        .flatMap(<span class="function"><span class="params">()</span>=&gt;</span>API.get(<span class="string">'/api/users'</span>))</span><br><span class="line">        .map(<span class="function"><span class="params">users</span>=&gt;</span>(&#123;<span class="attr">type</span>:<span class="string">'done'</span>, users&#125;))</span><br></pre></td></tr></table></figure>
+<h3 id="Side-by-side-Comparison"><a href="#Side-by-side-Comparison" class="headerlink" title="Side by side Comparison"></a>Side by side Comparison</h3><blockquote>
+<p>Demo Part (1/3)</p>
+</blockquote>
+<ul>
+<li>Fetch User</li>
+<li>Fetch User (cancelable)</li>
+<li>Do three things in sequence</li>
+<li>Login, Logout, Cancel (with redux)</li>
+</ul>
+<blockquote>
+<p>Fetch User from /api/users/1<br>Saga</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">watchSaga</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> takeEvery(<span class="string">'fetch_user'</span>, fetchUser) <span class="comment">// waiting for action (fetch_user)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">fetchUser</span>(<span class="params">action</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">yield</span> put(&#123;<span class="attr">type</span>:<span class="string">'fetch_user_ing'</span>&#125;)</span><br><span class="line">        <span class="keyword">const</span> response = <span class="keyword">yield</span> call(axios.get,<span class="string">'/api/users/1'</span>)</span><br><span class="line">        <span class="keyword">yield</span> put(&#123;<span class="attr">type</span>:<span class="string">'fetch_user_done'</span>,<span class="attr">user</span>:response.data&#125;)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="keyword">yield</span> put(&#123;<span class="attr">type</span>:<span class="string">'fetch_user_error'</span>,error&#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Fetch User from /api/users/1<br>Rxjs</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fetchUserEpic = <span class="function"><span class="params">action$</span> =&gt;</span></span><br><span class="line">    action$</span><br><span class="line">        .ofType(<span class="string">'fetch_user'</span>)</span><br><span class="line">        .map(<span class="function"><span class="params">()</span>=&gt;</span>(&#123;<span class="attr">type</span>:<span class="string">'fetch_user_ing'</span>&#125;))</span><br><span class="line">        .flatMap(<span class="function"><span class="params">()</span>=&gt;</span>axios.get(<span class="string">'/api/users/1'</span>))</span><br><span class="line">        .map(<span class="function"><span class="params">response</span>=&gt;</span>response.data)</span><br><span class="line">        .map(<span class="function"><span class="params">user</span>=&gt;</span>(&#123;<span class="attr">type</span>:<span class="string">'fetch_user_done'</span>, user&#125;))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Fetch User from /api/users/1 (cancelable)<br>Saga</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; take, put, call, fork, cancel &#125; <span class="keyword">from</span> <span class="string">'redux-saga/effects'</span></span><br><span class="line"><span class="keyword">import</span> API <span class="keyword">from</span> <span class="string">'...'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">fetchUser</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> put(&#123;<span class="attr">type</span>:<span class="string">'fetch_user_ing'</span>&#125;)</span><br><span class="line">    <span class="keyword">const</span> user = <span class="keyword">yield</span> call(API)</span><br><span class="line">    <span class="keyword">yield</span> put(&#123;<span class="attr">type</span>:<span class="string">'fetch_user_done'</span>, user&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">Watcher</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">yield</span> take(<span class="string">'fetch_user'</span>))&#123;</span><br><span class="line">        <span class="keyword">const</span> bgSyncTask = <span class="keyword">yield</span> fork(fetchUser)</span><br><span class="line">        <span class="keyword">yield</span> take(<span class="string">'fetch_user_cancel'</span>)</span><br><span class="line">        <span class="keyword">yield</span> cancel(bgSyncTask)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Fetch User from /api/users/1 (cancelable)<br>Rxjs</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fetchUserEpic = <span class="function"><span class="params">action$</span> =&gt;</span></span><br><span class="line">    actions$</span><br><span class="line">        .ofType(<span class="string">'fetch_user'</span>)</span><br><span class="line">        .map(<span class="function"><span class="params">()</span>=&gt;</span>(&#123;<span class="attr">type</span>:<span class="string">'fetch_user_ing'</span>&#125;))</span><br><span class="line">        .flatMap(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> Observable</span><br><span class="line">                .ajax</span><br><span class="line">                .get(<span class="string">'/api/user/1'</span>)</span><br><span class="line">                .map(<span class="function"><span class="params">user</span> =&gt;</span> (&#123; <span class="attr">type</span>: <span class="string">'fetch_user_done'</span>, user &#125;))</span><br><span class="line">                .takeUntil(action$.ofType(<span class="string">'fetch_user_cancel'</span>))</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Do three things in sequence</p>
+</blockquote>
+<blockquote>
+<p>Saga</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">worker1</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">worker2</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">worker3</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">watcher</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> score1 = <span class="keyword">yield</span>* worker1()</span><br><span class="line">  <span class="keyword">yield</span> put((&#123;<span class="attr">type</span>:<span class="string">'show_score'</span>, score1&#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> score2 = <span class="keyword">yield</span>* worker2()</span><br><span class="line">  <span class="keyword">yield</span> put((&#123;<span class="attr">type</span>:<span class="string">'show_score'</span>, score2&#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> score3 = <span class="keyword">yield</span>* worker3()</span><br><span class="line">  <span class="keyword">yield</span> put((&#123;<span class="attr">type</span>:<span class="string">'show_score'</span>, score3&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Do three things in sequence</p>
+</blockquote>
+<blockquote>
+<p>Rxjs</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> score1Epic = <span class="function"><span class="params">action$</span> =&gt;</span></span><br><span class="line">    action$</span><br><span class="line">        .ofType(<span class="string">'score1'</span>)</span><br><span class="line">        .reduce(worker1)</span><br><span class="line">        .flatMap(<span class="function"><span class="params">score</span>=&gt;</span>&#123;</span><br><span class="line">             <span class="keyword">return</span> Observable.merge(</span><br><span class="line">                &#123;<span class="attr">type</span>:<span class="string">'show_score'</span>, score&#125;,</span><br><span class="line">                &#123;<span class="attr">type</span>:<span class="string">'score2'</span>&#125;</span><br><span class="line">             )</span><br><span class="line">         &#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> score2Epic = <span class="function"><span class="params">action$</span> =&gt;</span></span><br><span class="line">    action$</span><br><span class="line">        .ofType(<span class="string">'score2'</span>)</span><br><span class="line">        .reduce(worker2)</span><br><span class="line">        .flatMap(<span class="function"><span class="params">score</span>=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> Observable.merge(</span><br><span class="line">                &#123;<span class="attr">type</span>:<span class="string">'show_score'</span>, score&#125;,</span><br><span class="line">                &#123;<span class="attr">type</span>:<span class="string">'score3'</span>&#125;</span><br><span class="line">            )</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line"> <span class="keyword">const</span> score3Epic = <span class="function"><span class="params">action$</span> =&gt;</span></span><br><span class="line">    action$</span><br><span class="line">        .ofType(<span class="string">'score3'</span>)</span><br><span class="line">        .reduce(worker3)</span><br><span class="line">        .map(<span class="function"><span class="params">score</span>=&gt;</span>(&#123;<span class="attr">type</span>:<span class="string">'show_score'</span>, score&#125;))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Login, token, Logout, Cancel<br>(with redux)</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = &#123;</span><br><span class="line">    token: <span class="literal">null</span>,</span><br><span class="line">    isFetching: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> tokenReducer = <span class="function">(<span class="params">state=<span class="literal">null</span>, action</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'login_success'</span>:</span><br><span class="line">            <span class="keyword">return</span> action.token</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'login_error'</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'login_cancel'</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'logout'</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> state</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isFetching = <span class="function">(<span class="params">state=<span class="literal">false</span>, action</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'login_request'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        <span class="keyword">case</span> <span class="string">'login_success'</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'login_error'</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'login_cancel'</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'logout'</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> state</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Login, token, Logout, Cancel<br>Saga</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; take, put, call, fork, cancel &#125; <span class="keyword">from</span> <span class="string">'redux-saga/effects'</span></span><br><span class="line"><span class="keyword">import</span> Api <span class="keyword">from</span> <span class="string">'...'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">loginWatcher</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; user, password &#125; = <span class="keyword">yield</span> take(<span class="string">'login_request'</span>)</span><br><span class="line">        , task = <span class="keyword">yield</span> fork(authorize, user, password)</span><br><span class="line">        , action = <span class="keyword">yield</span> take([<span class="string">'logout'</span>, <span class="string">'login_error'</span>])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (action.type === <span class="string">'logout'</span>) &#123;</span><br><span class="line">        <span class="keyword">yield</span> cancel(task)</span><br><span class="line">        <span class="keyword">yield</span> put(&#123;<span class="attr">type</span>:<span class="string">'login_cancel'</span>&#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">authorize</span>(<span class="params">user, password</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> token = <span class="keyword">yield</span> call(Api.getUserToken, user, password)</span><br><span class="line">        <span class="keyword">yield</span> put(&#123;<span class="attr">type</span>: <span class="string">'login_success'</span>, token&#125;)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="keyword">yield</span> put(&#123;<span class="attr">type</span>: <span class="string">'login_error'</span>, error&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Login, token, Logout, Cancel<br>Rxjs</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> authEpic = <span class="function"><span class="params">action$</span> =&gt;</span></span><br><span class="line">    action$</span><br><span class="line">        .ofType(<span class="string">'login_request'</span>)</span><br><span class="line">        .flatMap(<span class="function">(<span class="params">&#123;payload:&#123;user,password&#125;&#125;</span>)=&gt;</span></span><br><span class="line">            Observable</span><br><span class="line">                .ajax</span><br><span class="line">                .get(<span class="string">'/api/userToken'</span>, &#123; user, password &#125;)</span><br><span class="line">                .map(<span class="function">(<span class="params">&#123;token&#125;</span>) =&gt;</span> (&#123; <span class="attr">type</span>: <span class="string">'login_success'</span>, token &#125;))</span><br><span class="line">                .takeUntil(action$.ofType(<span class="string">'login_cancel'</span>, <span class="string">'logout'</span>))</span><br><span class="line">                .catch(<span class="function"><span class="params">error</span> =&gt;</span> Rx.Observable.of(&#123;<span class="attr">type</span>:<span class="string">'login_error'</span>, error&#125;))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Demo Part 2/3</p>
+</blockquote>
+<blockquote>
+<p>Logger</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ----- Saga ----- \\</span></span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> action = <span class="keyword">yield</span> take(<span class="string">'*'</span>)</span><br><span class="line">        , state = <span class="keyword">yield</span> select()</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'action:'</span>, action)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'state:'</span>, state)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ----- Rxjs ----- \\</span></span><br><span class="line">.do(<span class="function"><span class="params">value</span>=&gt;</span><span class="built_in">console</span>.log(value))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Take latest request</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ----- Saga ----- \\</span></span><br><span class="line">takeLatest()</span><br><span class="line"></span><br><span class="line"><span class="comment">// ----- Rxjs ----- \\</span></span><br><span class="line">.switchMap()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Retry with delay (1000ms)</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ----- Saga ----- \\</span></span><br><span class="line"></span><br><span class="line">... still thinking about it</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// ----- Rxjs ----- \\</span></span><br><span class="line"></span><br><span class="line">.retryWhen(<span class="function"><span class="params">errors</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> errors.delay(<span class="number">1000</span>).scan(<span class="function">(<span class="params">errorCount, err</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(errorCount &lt; <span class="number">3</span>) <span class="keyword">return</span> errorCount + <span class="number">1</span></span><br><span class="line">        <span class="keyword">throw</span> err</span><br><span class="line">    &#125;, <span class="number">0</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Error Handling</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// ----- Saga ----- \\</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// ... do things</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>:<span class="string">'fetch_user_error'</span>,error &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// ----- Rxjs ----- \\</span></span><br><span class="line"></span><br><span class="line">.catch(<span class="function"><span class="params">error</span> =&gt;</span> Observable.of(&#123; <span class="attr">type</span>:<span class="string">'fetch_user_error'</span>, error &#125;))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Running Tasks In Parallel</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ----- Saga ----- \\</span></span><br><span class="line"><span class="keyword">import</span> &#123; call &#125; <span class="keyword">from</span> <span class="string">'redux-saga/effects'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [users, repos]  = <span class="keyword">yield</span> [</span><br><span class="line">  call(fetch, <span class="string">'/users'</span>),</span><br><span class="line">  call(fetch, <span class="string">'/repos'</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// ----- Rxjs ----- \\</span></span><br><span class="line">.flatMap(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> Observable.merge(promiseA, promiseB)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Throttling, Debouncing, Retrying</p>
+</blockquote>
+<blockquote>
+<p>Saga</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ---- Throttling ---- \\</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">yield</span> throttle(<span class="number">500</span>, <span class="string">'input_change'</span>, fun)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ---- Debouncing ---- \\</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">yield</span> call(delay, <span class="number">500</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ---- Retrying ---- \\</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">retryAPI</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> apiResponse = <span class="keyword">yield</span> call(apiRequest, &#123; data &#125;);</span><br><span class="line">      <span class="keyword">return</span> apiResponse;</span><br><span class="line">    &#125; <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">      <span class="keyword">if</span>(i &lt; <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="keyword">yield</span> call(delay, <span class="number">2000</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'API request failed'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Throttling, Debouncing, Retrying<br>Saga</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ---- Throttling ---- \\</span></span><br><span class="line"></span><br><span class="line">.throtleTime(<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ---- Debouncing ---- \\</span></span><br><span class="line"></span><br><span class="line">.debouncing(<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ---- Retrying ---- \\</span></span><br><span class="line"></span><br><span class="line">.retry(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Part (3/3)<br>Test</p>
+</blockquote>
+<blockquote>
+<p>Saga</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  CALL: &#123;</span><br><span class="line">    fn: Api.fetch,  &lt;&lt;<span class="xml"><span class="tag">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; <span class="attr">make</span> <span class="attr">sure</span> <span class="attr">call</span> <span class="attr">with</span> <span class="attr">the</span> <span class="attr">right</span> <span class="attr">fn</span></span></span></span><br><span class="line"><span class="xml">    args: ['./products'] <span class="tag">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; <span class="attr">make</span> <span class="attr">sure</span> <span class="attr">call</span> <span class="attr">with</span> <span class="attr">the</span> <span class="attr">right</span> <span class="attr">args</span></span></span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">expect(</span></span><br><span class="line"><span class="xml">    fetchUser('api/users/1').next().value</span></span><br><span class="line"><span class="xml">).to.eql(</span></span><br><span class="line"><span class="xml">    call(axios.get, 'api/users/1')</span></span><br><span class="line"><span class="xml">)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Rxjs</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fake store ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//   https://redux-observable.js.org/docs/recipes/WritingTests.html</span></span><br></pre></td></tr></table></figure>
+<h3 id="Which-One-Do-I-prefer"><a href="#Which-One-Do-I-prefer" class="headerlink" title="Which One Do I prefer?"></a>Which One Do I prefer?</h3><blockquote>
+<p>Coding Style</p>
+</blockquote>
+<p>Saga</p>
+<blockquote>
+<ul>
+<li>Effects as data</li>
+<li>(Imperative style) Tell Program HOW to do things; Take time to reason about code</li>
+</ul>
+</blockquote>
+<p>Rxjs</p>
+<blockquote>
+<ul>
+<li>Events as data</li>
+<li>(Declarative Style) Tell Program WHAT things to do; Easy to reason about code</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p>Function Reusability</p>
+</blockquote>
+<p>Saga</p>
+<blockquote>
+<p>Low</p>
+</blockquote>
+<p>Rxjs</p>
+<blockquote>
+<p>High</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Test</p>
+</blockquote>
+<p>Saga</p>
+<blockquote>
+<p>Unit Test(easy)<br>Intergration Test(easy)<br>Test might fail if the order change</p>
+</blockquote>
+<p>Rxjs</p>
+<blockquote>
+<p>Unit Test(Very easy)<br>Intergration Test(Require Mocking)<br>Test will not fail(same end result)</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Learn Saga</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>Redux (1 day)</li>
+<li>Generator (1 day)</li>
+<li>Redux-Saga (few hours)</li>
+<li>Skill is not transferable</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>Total Learning Time:</p>
+<blockquote>
+<p>3~5 days</p>
+</blockquote>
+</blockquote>
+<hr>
+<blockquote>
+<p>Learn Rxjs</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>Redux (1 day)</li>
+<li>Rxjs (few days)</li>
+<li>Functional Programming (2 days)</li>
+<li>Redux-Observable (1 day)</li>
+<li>Skill is transferable</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>Total Learing Time:</p>
+<blockquote>
+<p>1~2 weeks</p>
+</blockquote>
+</blockquote>
+<hr>
+<p>Futher Reading</p>
+<blockquote>
+<p>merge()<br>map()<br>filter()<br>scan()<br>combineLatest()<br>concat()<br>do()<br>more …</p>
+</blockquote>
+<blockquote>
+<p>Visual Learning <a href="http://rxmarbles.com/" target="_blank" rel="noopener">http://rxmarbles.com/</a></p>
+</blockquote>
+<p>Futher Discussion</p>
+<blockquote>
+<p>Saga = Effects as data<br>Rxjs = Events as data</p>
+</blockquote>
+<blockquote>
+<p>Saga doesn’t actually perform the side effects itself. Instead, the helper functions will create objects that represents the intent of side effect. Then the internal library performs it for you”.</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">call (http.get, <span class="string">'/users/1'</span>) <span class="comment">// the task</span></span><br><span class="line"></span><br><span class="line">CALL: &#123; <span class="attr">fn</span>: http.get,  <span class="attr">args</span>: [<span class="string">'/users/1'</span>] &#125; <span class="comment">// the intent</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>This makes testing extremely easy, without the need for mocking.</p>
+</blockquote>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/03/21/gulp-and-webpack/" data-toggle="tooltip" data-placement="top" title="Gulp and Markdown">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/03/21/throttle-debounce/" data-toggle="tooltip" data-placement="top" title="Throttle and Debounce">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#ReactJs" title="ReactJs">ReactJs</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">Foo</a></li>
+                    
+                        <li><a href="#" target="_blank">Bar</a></li>
+                    
+                        <li><a href="#" target="_blank">Example Friends</a></li>
+                    
+                        <li><a href="#" target="_blank">It helps SEO</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "blog-asherjia-com";
+    var disqus_identifier = "http://blog.asherjia.com/2017/03/21/redux-sage-vs-redux-observable/";
+    var disqus_url = "http://blog.asherjia.com/2017/03/21/redux-sage-vs-redux-observable/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/asherjia">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Asher&#39;s Blog 2018 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://blog.asherjia.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://blog.asherjia.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
