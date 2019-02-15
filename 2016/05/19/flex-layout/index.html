@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keyword" content="">
+    <meta name="description" content>
+    <meta name="keyword" content>
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -200,13 +200,13 @@
 
                 <h1 id="Flex-布局"><a href="#Flex-布局" class="headerlink" title="Flex 布局"></a>Flex 布局</h1><p>Flex是Flexible Box的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。<br>任何一个容器都可以指定为Flex布局.</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">    <span class="attribute">display</span>: flex;</div><div class="line">    <span class="attribute">display</span>: -webkit-flex;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">    <span class="attribute">display</span>: inline-flex;</div><div class="line">    <span class="attribute">display</span>: -webkit-inline-flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071004.png" alt=""></p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071004.png" alt></p>
 <blockquote>
 <p>容器默认存在两根轴：水平的主轴（<code>main axis</code>）和垂直的交叉轴（<code>cross axis</code>）。<br>主轴的开始位置（<code>与边框的交叉点</code>）叫做<code>main start</code>，结束位置叫做m<code>ain end</code>；<br>交叉轴的开始位置叫做<code>cross start</code>，结束位置叫做<code>cross end</code>。<br>项目默认沿主轴排列。单个项目占据的主轴空间叫做<code>main size</code>，占据的交叉轴空间叫做<code>cross size</code>。</p>
 </blockquote>
 <h1 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h1><h2 id="flex-direction"><a href="#flex-direction" class="headerlink" title="flex-direction"></a>flex-direction</h2><p>项目的排列方向</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">  <span class="attribute">flex-direction</span>: row | row-reverse | column | column-reverse;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071005.png" alt=""></p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071005.png" alt></p>
 <ul>
 <li>row 垂直向上 (<code>default</code>)</li>
 <li>row-reverse 垂直向下</li>
@@ -215,7 +215,7 @@
 </ul>
 <h2 id="flex-warp"><a href="#flex-warp" class="headerlink" title="flex-warp"></a>flex-warp</h2><p>如果一条轴线排不下，如何换行。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span>&#123;</div><div class="line">  <span class="attribute">flex-wrap</span>: nowrap | wrap | wrap-reverse;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071006.png" alt=""></p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071006.png" alt></p>
 <ul>
 <li>nowrap 不换行 (<code>default</code>)</li>
 <li>wrap 换行 第一行在上</li>
@@ -225,7 +225,7 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">  <span class="attribute">flex-flow</span>: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h2><p>项目在主轴上的对齐方式。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">    <span class="attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-around</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071010.png" alt=""></p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071010.png" alt></p>
 <ul>
 <li>felx-start 左对齐</li>
 <li>flex-end 右对齐</li>
@@ -235,11 +235,11 @@
 </ul>
 <h2 id="align-items"><a href="#align-items" class="headerlink" title="align-items"></a>align-items</h2><p>项目在交叉轴上如何对齐</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">    <span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071011.png" alt=""></p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071011.png" alt></p>
 <p>flex-start 交叉轴的起点对齐<br>flex-end 交叉轴的终点对齐<br>center 交叉轴的中点对齐<br>baseline 项目的第一行文字的基线对齐<br>stretch 如果项目未设置高度或设为auto，将占满整个容器的高度 (<code>default</code>)</p>
 <h2 id="align-content"><a href="#align-content" class="headerlink" title="align-content"></a>align-content</h2><p>当有多跟轴线的时候项目的对齐方式</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">    <span class="attribute">align-content</span>: flex-start | flex-end | center | space-around | space-between | stretch</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071012.png" alt=""></p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071012.png" alt></p>
 <ul>
 <li>flex-start 与交叉轴的起点对齐</li>
 <li>flex-end 与交叉轴的终点对齐</li>
