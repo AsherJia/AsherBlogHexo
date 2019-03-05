@@ -150,6 +150,6 @@ deploy:
   branch: gh-pages
 
 
-live2d:
-  model: Epsilon2.1
-  bottom: -60
+# live2d:
+#   model: Epsilon2.1
+#   bottom: -60
