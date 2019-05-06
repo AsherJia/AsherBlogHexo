@@ -116,13 +116,13 @@ Promise.prototype.catch = function(onRejected) {
     return this.then(null, onRejected)
 }
 
-var sleep = (value) => {
+var sleep1 = (value) => {
     console.log('pre sleep')
     return new Promise((resolve) => {
         setTimeout(() => {
             console.log(value)
-            resolve('sleep')
-        }, 1000)
+            resolve('sleep1')
+        }, 20000)
     })
 }
 
@@ -132,7 +132,7 @@ var sleep2 = (value) => {
         setTimeout(() => {
             console.log(value)
             resolve('sleep2')
-        }, 1000)
+        }, 20000)
     })
 }
 
@@ -142,32 +142,25 @@ var sleep3 = (value) => {
         setTimeout(() => {
             console.log(value)
             resolve('sleep3')
-        }, 1000)
+        }, 10000)
     })
 }
 
 
-new Promise(resolve => {
-    console.log('111')
-    resolve(111)
-})
+// new Promise(resolve => {
+//     console.log('111')
+//     resolve(111)
+// })
 // .then((value) => {
 //     console.log(value)
 //     return 333
 // })
-.then(() => {
-    console.log('t1')
-    return sleep(1)
-})
-// .then(() => {
-//     console.log('t2')
-//     return sleep2(2)
-// })
-// .then(() => {
-//     console.log('t3')
-//     return sleep3(3)
-// })
-.then(value => {
-    console.log('value: ' + value)
-})
 
+new Promise(() => {
+    console.log('t1')
+    return sleep1(1)
+})
+.then(() => {
+    console.log('t2')
+    return sleep2(2)
+})
