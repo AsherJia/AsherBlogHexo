@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
@@ -168,7 +168,7 @@
         background-image: url('webpack-bg.png')
     }
 </style>
-<header class="intro-header">
+<header class="intro-header" >
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -203,7 +203,7 @@
 
                 <p><a href="https://medium.com/@rajaraodv/two-quick-ways-to-reduce-react-apps-size-in-production-82226605771a#.qaey3854r" target="_blank" rel="external">App</a>{:target=”_block”}</p>
 <p>If you are building a React + Redux App that has Webpack, then you might have noticed that the size of the final bundle.js (the dev version) for a simple app itself could be 1MB- 2MB!<br>For example: Below is a picture from Webpack stats analyzer for the simple react-redux-blog (live). It shows that total size is 1.5MB and 90% (1.2MB) is just libraries in node_modules!</p>
-<p>For example: Below is a picture from Webpack stats analyzer for the simple react-redux-blog (live). It shows that total size is 1.5MB and 90% (1.2MB) is just libraries in node_modules!<br><img src="http://o7d3ayvg2.bkt.clouddn.com/react-redux-webpack-node_modules.png" alt></p>
+<p>For example: Below is a picture from Webpack stats analyzer for the simple react-redux-blog (live). It shows that total size is 1.5MB and 90% (1.2MB) is just libraries in node_modules!<br><img src="http://o7d3ayvg2.bkt.clouddn.com/react-redux-webpack-node_modules.png" alt=""></p>
 <p>It could be scary😱 but Webpack and Node.js has all the tools you need to reduce the size.<br>I could reduce the size from 1.5MB to just 90KB by simply doing the following two things:</p>
 <p>1: Add the following Webpack plugins (source code)</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">plugins: [</div><div class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123; <span class="comment">// &lt;-- key to reducing React's size</span></div><div class="line">        <span class="comment">// This can reduce react lib size and disable some dev feactures like props validation</span></div><div class="line">        <span class="string">'process.env'</span>: &#123;</div><div class="line">            <span class="string">'NODE_ENV'</span>: <span class="built_in">JSON</span>.stringify(<span class="string">'production'</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;),</div><div class="line">    <span class="keyword">new</span> webpack.optimize.DedupePlugin(), <span class="comment">//dedupe similar code</span></div><div class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(), <span class="comment">//minify everything</span></div><div class="line">    <span class="keyword">new</span> webpack.optimize.AggressiveMergingPlugin()<span class="comment">//Merge chunks</span></div><div class="line">  ],</div></pre></td></tr></table></figure>
@@ -412,7 +412,7 @@
 
                 
                     <li>
-                        <a target="_blank" href="https://github.com/asherjia">
+                        <a target="_blank"  href="https://github.com/asherjia">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -432,7 +432,10 @@
                         <i class="fa fa-heart"></i>
                     </span> 
                     Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
-                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
                     </iframe>
                 </p>
             </div>
